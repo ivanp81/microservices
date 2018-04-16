@@ -5,6 +5,7 @@ services:
   advertise-rabbitmq:
     container_name: advertise-rabbitmq
     image: rabbitmq:3-management
+    restart: unless-stopped #always
     ports:
       - 15672:15672
       
@@ -15,6 +16,7 @@ services:
       - MONGODB_ADVERTISE_PASSWORD=$MONGODB_ADVERTISE_PASSWORD
       - RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD
     image: ivanp81/advertise
+    restart: unless-stopped #always
     depends_on: 
       - advertise-mongodb
       - advertise-rabbitmq
@@ -26,6 +28,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_ROOT_PASSWORD
       - MONGODB_ADVERTISE_PASSWORD=$MONGODB_ADVERTISE_PASSWORD
     image: ivanp81/advertise-mongodb
+    restart: unless-stopped #always
     command: mongod --smallfiles
     
   advertise-search: 
@@ -34,6 +37,7 @@ services:
       - SPRING_PROFILES_ACTIVE=$SPRING_PROFILES_ACTIVE
       - RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD
     image: ivanp81/advertise-search
+    restart: unless-stopped #always
     depends_on: 
       - advertise-search-elasticsearch
       - advertise-rabbitmq
@@ -41,4 +45,5 @@ services:
   advertise-search-elasticsearch:
     container_name: advertise-search-elasticsearch
     image: elasticsearch:2.4
+    restart: unless-stopped #always
   

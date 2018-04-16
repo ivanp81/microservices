@@ -32,8 +32,6 @@ public class EmbeddedBroker {
         //brokerOptions.setConfigProperty("qpid.home_dir", homePath);
         brokerOptions.setConfigProperty("qpid.pass_file", homePath + "/" + QPID_PASSWORD_LOCATION);
         brokerOptions.setInitialConfigurationLocation(homePath + "/" + QPID_CONFIG_LOCATION);
-        
-        System.out.println("BROKER MANAGER CREATED");
     } 
 
     public void start() throws Exception {

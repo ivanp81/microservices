@@ -17,11 +17,11 @@ public class ElasticSearchConfiguration {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-//	@Bean
-//	@Profile({"testing"})
-//    public Elasticbee elasticbee() {
-//		log.debug("Running Index initialization with Elasticbee");
-//		Elasticbee elasticbee = new Elasticbee();
-//		return elasticbee;
-//	}
+	@Bean
+	@Profile("testing")
+    public Elasticbee elasticbee() {
+		log.info("Running Index initialization with Elasticbee");
+		Elasticbee elasticbee = new Elasticbee();
+		return elasticbee;
+	}
 }

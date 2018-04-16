@@ -3,7 +3,6 @@ package it.joint.microservices.advertise.componentTests.api;
 import it.joint.microservices.advertise.domain.model.Advertise;
 import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
 import it.joint.microservices.advertise.tests.mock.elasticsearch.EmbeddedElasticSearchRule;
-import it.joint.microservices.advertise.tests.util.TestUtil;
 
 import org.junit.Before;
 import org.junit.ClassRule;
