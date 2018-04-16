@@ -1,0 +1,49 @@
+spring.profiles.active: dev
+
+server: 
+  port: 8081
+
+---
+
+spring:
+  profiles: dev
+  data:
+    elasticsearch:
+      cluster-name:  
+      cluster-nodes: localhost:9300
+
+logging:
+  level:
+    root: INFO
+    it.joint.microservices: DEBUG
+
+--- 
+
+spring:
+  profiles: test
+  data:
+    elasticsearch:
+      cluster-name:
+      cluster-nodes:
+---
+
+spring:
+  profiles: testing
+  data:
+    elasticsearch: 
+      cluster-name:
+      cluster-nodes: advertise-index-elasticsearch:9300
+    
+logging.config: logs/logback-spring.xml
+
+---
+
+spring:
+  profiles: prod
+  data:
+    elasticsearch: 
+      cluster-name:
+      cluster-nodes: advertise-index-elasticsearch:9300
+    
+logging.config: logs/logback-spring.xml
+ 

@@ -1,0 +1,81 @@
+spring.profiles.active: dev
+
+---
+
+spring:
+  profiles: dev
+  data:
+    mongodb:
+      host: localhost
+      database: advertise
+      port: 27017
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    
+logging:
+  level:
+    root: INFO
+    it.joint.microservices: DEBUG
+--- 
+
+test_mongodb_host: ${TEST_MONGODB_HOST:localhost}
+test_rabbitmq_host: ${TEST_RABBITMQ_HOST:localhost}
+
+spring:
+  profiles: test
+  data:
+    mongodb:
+      host: ${test_mongodb_host}
+      database: advertise
+      port: 27017
+  rabbitmq:
+    host: ${test_rabbitmq_host}
+    port: 5672
+    username: guest
+    password: guest
+
+logging:
+  level:
+    root: INFO
+    it.joint.microservices: DEBUG
+---
+
+spring:
+  profiles: testing
+  data:
+    mongodb: 
+      host: advertise-mongodb
+      username: advertise
+      password: ${MONGODB_ADVERTISE_PASSWORD}
+      database: advertise
+      port: 27017
+  rabbitmq:
+    host: microservices-rabbitmq
+    port: 5672
+    username: guest
+    password: ${RABBITMQ_PASSWORD}
+    
+logging.config: logs/logback-spring.xml
+
+---
+
+spring:
+  profiles: prod
+  data:
+    mongodb: 
+      host: advertise-mongodb
+      username: advertise
+      password: ${MONGODB_ADVERTISE_PASSWORD}
+      database: advertise
+      port: 27017
+  rabbitmq:
+    host: microservices-rabbitmq
+    port: 5672
+    username: guest
+    password: ${RABBITMQ_PASSWORD}
+    
+logging.config: logs/logback-spring.xml
+ 

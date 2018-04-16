@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  
+  rabbitmq:
+    ports:
+      - 5672:5672
+               
+#  advertise:
+#     build: 
+#      context: ./advertise
+#     ports: 
+#      - 8080:8080
+#
+#  advertise-mongodb: 
+#    build: 
+#      context: ./mongodb
+#    ports:
+#      - 27017:27017
+      
+  advertise-index:
+     build: 
+      context: ./advertise-index
+     ports: 
+      - 8081:8081
+
+  advertise-index-elasticsearch: 
+    ports:
+      - 9200:9200
+      - 9300:9300
