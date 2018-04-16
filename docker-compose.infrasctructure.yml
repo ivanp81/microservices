@@ -13,7 +13,7 @@ services:
     ports:
       - 27017:27017
 
-  advertise-index-elasticsearch: 
+  advertise-search-elasticsearch: 
     image: elasticsearch:2.4
     ports:
       - 9200:9200

@@ -1,9 +1,7 @@
 package it.joint.microservices.advertise.componentTests;
 
-import it.joint.microservices.advertise.AdvertiseApplication;
 import it.joint.microservices.advertise.domain.model.Advertise;
-import it.joint.microservices.advertise.tests.mock.broker.DummyAdvertiseMessageConsumer;
-import it.joint.microservices.advertise.tests.mock.broker.EmbeddedBrokerConfig;
+import it.joint.microservices.advertise.tests.mock.broker.DummyAdvertiseBroadcastReceiver;
 import it.joint.microservices.advertise.tests.mock.broker.EmbeddedBrokerRule;
 import it.joint.microservices.advertise.util.JSONUtil;
 
@@ -14,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -31,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {AdvertiseApplication.class, EmbeddedBrokerConfig.class})
 public class AdvertiseComponentTest {
 
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
@@ -44,12 +40,12 @@ public class AdvertiseComponentTest {
     private MockMvc mvc;
 			
 	@Autowired
-    private DummyAdvertiseMessageConsumer advertiseMessageConsumer;
+    private DummyAdvertiseBroadcastReceiver broadcastReceiver;
     
 	@Test
 	public void testCreateAdvertise() throws Exception {
 
-		advertiseMessageConsumer.initCounter();
+		broadcastReceiver.initCounter();
 		Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
 
 
@@ -60,6 +56,6 @@ public class AdvertiseComponentTest {
 				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
 		
 		Thread.sleep(3000);
-    	assertThat(advertiseMessageConsumer.getCounter(), equalTo(1));
+    	assertThat(broadcastReceiver.getCounter(), equalTo(1));
 	}
 }

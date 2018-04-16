@@ -6,7 +6,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 import it.joint.microservices.advertise.config.RabbitMQBroadcastConfig;
 
-public class DummyAdvertiseMessageConsumer {
+public class DummyAdvertiseBroadcastReceiver {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 

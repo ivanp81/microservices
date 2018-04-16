@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>it.joint.microservices</groupId>
-	<artifactId>advertise-index</artifactId>
+	<artifactId>advertise-search</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>advertise-index</name>
+	<name>advertise-search</name>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -18,7 +18,7 @@
 
 	<properties>
 		<java.version>1.8</java.version>
-		<acceptance.advertise-index.url>http://localhost:8081</acceptance.advertise-index.url>
+		<acceptance.advertise-search.url>http://localhost:8081</acceptance.advertise-search.url>
 	</properties>
 
 	<dependencies>
@@ -97,7 +97,7 @@
 								<include>**/acceptanceTests/**</include>
 							</includes>
 							<systemPropertyVariables>
-								<acceptance.advertise-index.url>${acceptance.advertise-index.url}</acceptance.advertise-index.url>
+								<acceptance.advertise-search.url>${acceptance.advertise-search.url}</acceptance.advertise-search.url>
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>

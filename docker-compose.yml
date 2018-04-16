@@ -26,15 +26,15 @@ services:
 #    image: ivanp81/advertise-mongodb
 #    command: mongod --smallfiles
     
-  advertise-index: 
-    container_name: advertise-index
+  advertise-search: 
+    container_name: advertise-search
     environment: 
       - SPRING_PROFILES_ACTIVE=$SPRING_PROFILES_ACTIVE
-    image: ivanp81/advertise-index
+    image: ivanp81/advertise-search
     depends_on: 
-      - advertise-index-elasticsearch
+      - advertise-search-elasticsearch
   
-  advertise-index-elasticsearch:
-    container_name: advertise-index-elasticsearch
+  advertise-search-elasticsearch:
+    container_name: advertise-search-elasticsearch
     image: elasticsearch:2.4
   

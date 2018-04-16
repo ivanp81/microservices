@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class EmbeddedBrokerConfig {
 	
 	@Bean
-	public DummyAdvertiseMessageConsumer avertiseMessageConsumer() {
-		return new DummyAdvertiseMessageConsumer();
+	public DummyAdvertiseBroadcastReceiver broadcastReceiver() {
+		return new DummyAdvertiseBroadcastReceiver();
 	}
 }

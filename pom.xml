@@ -10,7 +10,7 @@
 
 	<modules>
 		<module>advertise</module>
-		<module>advertise-index</module>
+		<module>advertise-search</module>
 	</modules>
 	
 	<!-- <dependencies>

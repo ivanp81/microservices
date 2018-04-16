@@ -32,7 +32,7 @@ spring:
   data:
     elasticsearch: 
       cluster-name:
-      cluster-nodes: advertise-index-elasticsearch:9300
+      cluster-nodes: advertise-search-elasticsearch:9300
     
 logging.config: logs/logback-spring.xml
 
@@ -43,7 +43,7 @@ spring:
   data:
     elasticsearch: 
       cluster-name:
-      cluster-nodes: advertise-index-elasticsearch:9300
+      cluster-nodes: advertise-search-elasticsearch:9300
     
 logging.config: logs/logback-spring.xml
  

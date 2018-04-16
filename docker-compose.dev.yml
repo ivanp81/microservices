@@ -18,13 +18,13 @@ services:
 #    ports:
 #      - 27017:27017
       
-  advertise-index:
+  advertise-search:
      build: 
-      context: ./advertise-index
+      context: ./advertise-search
      ports: 
       - 8081:8081
 
-  advertise-index-elasticsearch: 
+  advertise-search-elasticsearch: 
     ports:
       - 9200:9200
       - 9300:9300
