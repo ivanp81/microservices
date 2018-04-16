@@ -11,7 +11,12 @@ spring:
     elasticsearch:
       cluster-name:  
       cluster-nodes: localhost:9300
-
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  
 logging:
   level:
     root: INFO
@@ -19,12 +24,20 @@ logging:
 
 --- 
 
+test_rabbitmq_host: ${TEST_RABBITMQ_HOST:localhost}
+
 spring:
   profiles: test
   data:
     elasticsearch:
       cluster-name:
       cluster-nodes:
+  rabbitmq:
+    host: ${test_rabbitmq_host}
+    port: 5672
+    username: guest
+    password: guest
+  
 ---
 
 spring:
@@ -33,6 +46,11 @@ spring:
     elasticsearch: 
       cluster-name:
       cluster-nodes: advertise-search-elasticsearch:9300
+  rabbitmq:
+    host: advertise-rabbitmq
+    port: 5672
+    username: guest
+    password: ${RABBITMQ_PASSWORD}
     
 logging.config: logs/logback-spring.xml
 
@@ -44,6 +62,11 @@ spring:
     elasticsearch: 
       cluster-name:
       cluster-nodes: advertise-search-elasticsearch:9300
+  rabbitmq:
+    host: advertise-rabbitmq
+    port: 5672
+    username: guest
+    password: ${RABBITMQ_PASSWORD}
     
 logging.config: logs/logback-spring.xml
  

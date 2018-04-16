@@ -7,21 +7,17 @@ import java.io.IOException;
 import org.apache.qpid.server.Broker;
 import org.apache.qpid.server.BrokerOptions;
 
-import com.google.common.io.Files;
+public class EmbeddedBroker {
 
-public class EmbeddedBrokerManager {
-
-	//@Value("${spring.rabbitmq.port}")
-	//private  String rabbitmqPort;
+	private static final String DEFAULT_HOME_DIRECTORY = "target/qpid-home";
 
 	public static final String QPID_CONFIG_LOCATION = "src/test/resources/qpid-config.json";
 	public static final String QPID_PASSWORD_LOCATION = "src/test/resources/passwd.txt";
-	//public static final String APPLICATION_CONFIG_LOCATION = "src/test/resources/application.properties";
 
     private final Broker broker;
     private final BrokerOptions brokerOptions;
     
-    public EmbeddedBrokerManager() throws FileNotFoundException, IOException {
+    public EmbeddedBroker() throws FileNotFoundException, IOException {
     	
     	broker = new Broker();
     	
@@ -29,13 +25,9 @@ public class EmbeddedBrokerManager {
     	//properties.load(new FileInputStream(new File(APPLICATION_CONFIG_LOCATION)));
     	//String amqpPort = properties.getProperty("spring.rabbitmq.port");
         
-    	File tmpFolder = Files.createTempDir();
-        String userDir = System.getProperty("user.dir").toString();
-        File file = new File(userDir);
-        String homePath = file.getAbsolutePath();
-        
+        String homePath = getHomePath();        
         brokerOptions = new BrokerOptions();
-        brokerOptions.setConfigProperty("qpid.work_dir", tmpFolder.getAbsolutePath());
+        brokerOptions.setConfigProperty("qpid.work_dir", homePath + "/" + DEFAULT_HOME_DIRECTORY + "/work");
         //brokerOptions.setConfigProperty("qpid.amqp_port", amqpPort);
         //brokerOptions.setConfigProperty("qpid.home_dir", homePath);
         brokerOptions.setConfigProperty("qpid.pass_file", homePath + "/" + QPID_PASSWORD_LOCATION);
@@ -44,11 +36,18 @@ public class EmbeddedBrokerManager {
         System.out.println("BROKER MANAGER CREATED");
     } 
 
-    public void startBroker() throws Exception {
+    public void start() throws Exception {
         broker.startup(brokerOptions);
     }
 
-    public void stopBroker() {
+    public void stop() {
         broker.shutdown();
+    }
+    
+    private String getHomePath() {
+    	String userDir = System.getProperty("user.dir").toString();
+        File file = new File(userDir);
+        String homePath = file.getAbsolutePath();
+        return homePath;
     }
 }

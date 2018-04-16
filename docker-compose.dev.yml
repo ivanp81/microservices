@@ -2,21 +2,21 @@ version: '3'
 
 services:
   
-  rabbitmq:
+  advertise-rabbitmq:
     ports:
       - 5672:5672
                
-#  advertise:
-#     build: 
-#      context: ./advertise
-#     ports: 
-#      - 8080:8080
-#
-#  advertise-mongodb: 
-#    build: 
-#      context: ./mongodb
-#    ports:
-#      - 27017:27017
+  advertise:
+     build: 
+      context: ./advertise
+     ports: 
+      - 8080:8080
+
+  advertise-mongodb: 
+    build: 
+      context: ./mongodb
+    ports:
+      - 27017:27017
       
   advertise-search:
      build: 

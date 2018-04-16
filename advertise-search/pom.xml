@@ -20,6 +20,13 @@
 		<java.version>1.8</java.version>
 		<acceptance.advertise-search.url>http://localhost:8081</acceptance.advertise-search.url>
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>projectlombok.org</id>
+			<url>http://projectlombok.org/mavenrepo</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -35,6 +42,15 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
 			<scope>test</scope>
@@ -47,11 +63,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -61,6 +72,12 @@
 			<version>3.0.3</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.qpid</groupId>
+			<artifactId>qpid-broker</artifactId>
+			<version>6.1.6</version>
+			<scope>test</scope>
+		</dependency> 
 	</dependencies>
 
 	<profiles>

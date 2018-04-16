@@ -16,13 +16,13 @@ import java.net.URI;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {AcceptanceTestsConfiguration.class })
-public class AdvertiseIndexE2ETest {
+public class AdvertiseSearchE2ETest {
 
 	@Autowired
 	private URI baseUri;
 		
 	@Test
-	public void givenId_whenGetAdvertises_thenStatusCodeIs200() {
+	public void testGetAdvertise() {
 
 		when().get(baseUri.toString() + "/api/advertises/1")
 			.then()

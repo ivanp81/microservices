@@ -11,20 +11,20 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api")
-public class AdvertiseSearchController {
+public class AdvertiseController {
 
-	private final Logger log = LoggerFactory.getLogger(AdvertiseSearchController.class);
+	private final Logger log = LoggerFactory.getLogger(AdvertiseController.class);
 
 	private AdvertiseRepository advertiseRepository;
 	
 	@Autowired
-	public AdvertiseSearchController(AdvertiseRepository advertiseRepository) {
+	public AdvertiseController(AdvertiseRepository advertiseRepository) {
 		this.advertiseRepository = advertiseRepository;
 	}
 
     @GetMapping("/advertises/{id}")
     public Advertise getAdvertise(@PathVariable String id) {
-        log.debug("REST request to get Advertise : {}", id);
+        log.info("REST request to getAdvertise : {}", id);
         Advertise advertise = advertiseRepository.findOne(id);
         return advertise;
     }	

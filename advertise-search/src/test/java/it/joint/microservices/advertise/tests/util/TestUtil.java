@@ -1,4 +1,4 @@
-package it.joint.microservices.advertise.util;
+package it.joint.microservices.advertise.tests.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

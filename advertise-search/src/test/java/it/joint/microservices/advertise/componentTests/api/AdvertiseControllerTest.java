@@ -1,33 +1,45 @@
-package it.joint.microservices.advertise.componentTests;
+package it.joint.microservices.advertise.componentTests.api;
 
 import it.joint.microservices.advertise.domain.model.Advertise;
 import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
-import it.joint.microservices.advertise.util.TestUtil;
+import it.joint.microservices.advertise.tests.mock.elasticsearch.EmbeddedElasticSearchRule;
+import it.joint.microservices.advertise.tests.util.TestUtil;
 
 import org.junit.Before;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class AdvertiseComponentTest extends ElasticSearchIntegrationTests {
+public class AdvertiseControllerTest {
 
+	private static final String DEFAULT_ID = "11111111";
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
+    @ClassRule
+    public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
+
+    //exclude rabbit from the test
+    @MockBean
+    private RabbitAdmin rabbitAdmin;
+    
 	@Autowired
     private MockMvc mvc;
 	
@@ -40,7 +52,7 @@ public class AdvertiseComponentTest extends ElasticSearchIntegrationTests {
     public void setUp() {
     	
     	advertise = new Advertise.Builder()
-								 .withId("1")
+								 .withId(DEFAULT_ID)
 								 .withTitle(DEFAULT_TITLE)
 								 .withContent(DEFAULT_CONTENT)
 								 .build();
@@ -50,11 +62,11 @@ public class AdvertiseComponentTest extends ElasticSearchIntegrationTests {
     }
     
 	@Test
-	public void givenValidAdvertiseId_whenGetAdvertise_thenReturnAdvertise() throws Exception {
+	public void testGetAdvertise() throws Exception {
 
-		  mvc.perform(get("/api/advertises/1"))
-		   .andExpect(status().isOk())
-		   .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-		   .andExpect(content().string(TestUtil.convertObjectToJsonString(advertise)));
-	}
+		  mvc.perform(get("/api/advertises/" + DEFAULT_ID))
+		  .andExpect(status().isOk()).andExpect(jsonPath("$.id", is(DEFAULT_ID)))
+			.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
+			.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+}
 }

@@ -15,13 +15,13 @@ import org.slf4j.LoggerFactory;
 @EnableElasticsearchRepositories("it.joint.microservices.advertise.domain.repository")
 public class ElasticSearchConfiguration {
 
-	private final Logger log = LoggerFactory.getLogger(ElasticSearchConfiguration.class);
-	
-	@Bean
-	@Profile({"testing", "prod"})
-    public Elasticbee elasticbee() {
-		log.debug("Running Index initialization with Elasticbee");
-		Elasticbee elasticbee = new Elasticbee();
-		return elasticbee;
-	}
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+//	@Bean
+//	@Profile({"testing"})
+//    public Elasticbee elasticbee() {
+//		log.debug("Running Index initialization with Elasticbee");
+//		Elasticbee elasticbee = new Elasticbee();
+//		return elasticbee;
+//	}
 }

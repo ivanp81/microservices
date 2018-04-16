@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
- 
+
 	<groupId>it.joint.microservices</groupId>
 	<artifactId>advertise</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>advertise</name>
-  
-	<parent>  
+
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.9.RELEASE</version>
@@ -22,8 +22,14 @@
 		<mongobee.version>0.13</mongobee.version>
 		<acceptance.advertise.url>http://localhost:8080</acceptance.advertise.url>
 	</properties>
-
-
+	
+	<repositories>
+		<repository>
+			<id>projectlombok.org</id>
+			<url>http://projectlombok.org/mavenrepo</url>
+		</repository>
+	</repositories>
+		
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -34,13 +40,28 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp</artifactId>
-        </dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
 		<dependency>
-  			<groupId>com.github.mongobee</groupId>
-  			<artifactId>mongobee</artifactId>
-  			<version>${mongobee.version}</version>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.mongobee</groupId>
+			<artifactId>mongobee</artifactId>
+			<version>${mongobee.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+    				<artifactId>guava</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+    		<groupId>com.google.guava</groupId>
+    		<artifactId>guava</artifactId>
+    		<version>18.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -63,19 +84,12 @@
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
-
-    <groupId>org.apache.qpid</groupId>
-
-    <artifactId>qpid-broker</artifactId>
-
-    <version>0.28</version>
-
-<scope>test</scope>
-
-</dependency>
-		
+			<groupId>org.apache.qpid</groupId>
+			<artifactId>qpid-broker</artifactId>
+			<version>6.1.6</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -153,5 +167,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>
