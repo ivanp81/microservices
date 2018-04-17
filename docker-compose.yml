@@ -2,6 +2,16 @@ version: '3'
 
 services:
   
+  advertise-gateway:
+     container_name: advertise-gateway
+     image: ivanp81/advertise-gateway
+     restart: always
+     depends_on:
+       - advertise
+       - advertise-search
+     ports:
+       - 80:80
+  
   advertise-rabbitmq:
     container_name: advertise-rabbitmq
     image: rabbitmq:3-management
@@ -11,7 +21,8 @@ services:
       
   advertise: 
     container_name: advertise
-    environment: 
+    environment:
+      - VIRTUAL_HOST=advertise.local 
       - SPRING_PROFILES_ACTIVE=$SPRING_PROFILES_ACTIVE
       - MONGODB_ADVERTISE_PASSWORD=$MONGODB_ADVERTISE_PASSWORD
       - RABBITMQ_PASSWORD=$RABBITMQ_PASSWORD
@@ -46,4 +57,3 @@ services:
     container_name: advertise-search-elasticsearch
     image: elasticsearch:2.4
     restart: unless-stopped #always
-  

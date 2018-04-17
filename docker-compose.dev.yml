@@ -2,6 +2,10 @@ version: '3'
 
 services:
   
+  advertise-gateway: 
+    build: 
+      context: ./nginx-gateway
+  
   advertise-rabbitmq:
     ports:
       - 5672:5672

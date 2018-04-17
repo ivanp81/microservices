@@ -6,6 +6,10 @@ export MONGODB_ROOT_USERNAME=root
 export MONGODB_ROOT_PASSWORD=root
 export RABBITMQ_PASSWORD=guest
 
+docker stop advertise-gateway
+docker rm advertise-gateway
+docker rmi ivanp81/advertise-gateway
+
 docker stop advertise-mongodb
 docker rm advertise-mongodb
 docker rmi ivanp81/advertise-mongodb
