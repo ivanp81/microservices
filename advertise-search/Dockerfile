@@ -27,7 +27,7 @@ ADD entrypoint.sh $ADVERTISE_SEARCH_BINARIES/entrypoint.sh
 RUN chmod 755 $ADVERTISE_SEARCH_BINARIES/entrypoint.sh
 
 # Expose default servlet container port
-EXPOSE 8080
+EXPOSE 8082
 
 # Main command
 ENTRYPOINT ["/bin/sh", "/opt/advertise-search/bin/entrypoint.sh"]

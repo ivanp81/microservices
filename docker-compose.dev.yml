@@ -2,6 +2,10 @@ version: '3'
 
 services:
   
+  advertise-ui: 
+    build: 
+      context: ./ui
+  
   advertise-gateway: 
     build: 
       context: ./nginx-gateway
@@ -14,7 +18,7 @@ services:
      build: 
       context: ./advertise
      ports: 
-      - 8080:8080
+      - 8081:8081
 
   advertise-mongodb: 
     build: 
@@ -26,7 +30,7 @@ services:
      build: 
       context: ./advertise-search
      ports: 
-      - 8081:8081
+      - 8082:8082
 
   advertise-search-elasticsearch: 
     ports:

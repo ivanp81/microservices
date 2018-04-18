@@ -2,6 +2,15 @@ version: '3'
 
 services:
   
+  advertise-ui:
+     container_name: advertise-ui
+     image: ivanp81/advertise-ui
+     restart: unless-stopped
+     depends_on:
+       - advertise-gateway
+     ports:
+       - 80:80
+       
   advertise-gateway:
      container_name: advertise-gateway
      image: ivanp81/advertise-gateway
@@ -10,7 +19,7 @@ services:
        - advertise
        - advertise-search
      ports:
-       - 80:80
+       - 8080:8080
   
   advertise-rabbitmq:
     container_name: advertise-rabbitmq
