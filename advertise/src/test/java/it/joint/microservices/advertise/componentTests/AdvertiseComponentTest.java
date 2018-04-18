@@ -34,31 +34,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdvertiseComponentTest {
 
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-    @ClassRule
-    public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
+	@ClassRule
+	public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
 
 	@Autowired
-    private MockMvc mvc;
-			
+	private MockMvc mvc;
+
 	@Autowired
-    private DummyAdvertiseBroadcastReceiver broadcastReceiver;
-    
+	private DummyAdvertiseBroadcastReceiver broadcastReceiver;
+
 	@Test
 	public void testCreateAdvertise() throws Exception {
 
 		broadcastReceiver.initCounter();
 		Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
 
-
 		mvc.perform(post("/api/advertises").content(JSONUtil.serializeToJson((advertise)))
 				.contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(notNullValue())))
-				.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
+				.andExpect(jsonPath("$.id", is(notNullValue()))).andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
 				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
-		
+
 		Thread.sleep(3000);
-    	assertThat(broadcastReceiver.getCounter(), equalTo(1));
+		assertThat(broadcastReceiver.getCounter(), equalTo(1));
 	}
 }
