@@ -19,7 +19,7 @@ public class ElasticSearchConfiguration {
 
 	@Bean
 	@Profile("testing")
-    public Elasticbee elasticbee() {
+	public Elasticbee elasticbee() {
 		log.info("Running Index initialization with Elasticbee");
 		Elasticbee elasticbee = new Elasticbee();
 		return elasticbee;

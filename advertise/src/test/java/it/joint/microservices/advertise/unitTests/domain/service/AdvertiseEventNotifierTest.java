@@ -22,41 +22,41 @@ public class AdvertiseEventNotifierTest {
 
 	private static final String DEFAULT_ID = "11111111";
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
 	private AdvertiseEventNotifier advertiseMessageProducer;
-   
-    @Mock
+
+	@Mock
 	private RabbitTemplate rabbitTemplate;
 
-    @Before
-    public void setUp() {
-    	
-        initMocks(this);
-        advertiseMessageProducer = new AdvertiseEventNotifierImpl(rabbitTemplate);
-    }
-    
-    @Test
-    public void testBroadCastSavedEvent() throws JsonProcessingException {
+	@Before
+	public void setUp() {
 
-    	Object message = new Advertise.Builder().withTitle(DEFAULT_TITLE)
-				   						        .withContent(DEFAULT_CONTENT)
-				   						        .build();
-    	
-    	AdvertiseEvent event = AdvertiseEvent.SAVED;
-    	advertiseMessageProducer.broadcastEvent(event, message);
-        
-        verify(rabbitTemplate).convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(), JSONUtil.serializeToJson(message));
-    }
+		initMocks(this);
+		advertiseMessageProducer = new AdvertiseEventNotifierImpl(rabbitTemplate);
+	}
 
-    @Test
-    public void testBroadCastDeletedEvent() throws JsonProcessingException {
+	@Test
+	public void testBroadCastSavedEvent() throws JsonProcessingException {
 
-    	Object message = new Advertise.Builder().withId(DEFAULT_ID);
-    	AdvertiseEvent event = AdvertiseEvent.DELETED;
-    	
-    	advertiseMessageProducer.broadcastEvent(event, message);
-        
-        verify(rabbitTemplate).convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(), JSONUtil.serializeToJson(message));
-    }
+		Object message = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
+
+		AdvertiseEvent event = AdvertiseEvent.SAVED;
+		advertiseMessageProducer.broadcastEvent(event, message);
+
+		verify(rabbitTemplate).convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName,
+				"#." + event.getName(), JSONUtil.serializeToJson(message));
+	}
+
+	@Test
+	public void testBroadCastDeletedEvent() throws JsonProcessingException {
+
+		Object message = new Advertise.Builder().withId(DEFAULT_ID);
+		AdvertiseEvent event = AdvertiseEvent.DELETED;
+
+		advertiseMessageProducer.broadcastEvent(event, message);
+
+		verify(rabbitTemplate).convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName,
+				"#." + event.getName(), JSONUtil.serializeToJson(message));
+	}
 }

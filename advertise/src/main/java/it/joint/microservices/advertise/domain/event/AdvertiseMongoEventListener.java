@@ -14,17 +14,17 @@ import it.joint.microservices.advertise.domain.model.Advertise;
 import it.joint.microservices.advertise.domain.service.AdvertiseEventNotifier;
 
 @Component
-public class AdvertiseMongoEventListener extends AbstractMongoEventListener<Advertise> {  
+public class AdvertiseMongoEventListener extends AbstractMongoEventListener<Advertise> {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private AdvertiseEventNotifier advertiseEventNotifier;
-	
+
 	@Autowired
 	public AdvertiseMongoEventListener(AdvertiseEventNotifier advertiseEventNotifier) {
 		this.advertiseEventNotifier = advertiseEventNotifier;
 	}
-	
+
 	@Override
 	public void onAfterSave(AfterSaveEvent<Advertise> event) {
 		log.info("onAfterSave event");
@@ -32,10 +32,10 @@ public class AdvertiseMongoEventListener extends AbstractMongoEventListener<Adve
 			advertiseEventNotifier.broadcastEvent(AdvertiseEvent.SAVED, event.getSource());
 		} catch (JsonProcessingException e) {
 			// TODO to improve
-			log.error("onAfterSave error > can't process event source", event.getSource());			
+			log.error("onAfterSave error > can't process event source", event.getSource());
 		}
 	}
-	
+
 	@Override
 	public void onAfterDelete(AfterDeleteEvent<Advertise> event) {
 		log.info("onAfterDelete event");
@@ -46,4 +46,4 @@ public class AdvertiseMongoEventListener extends AbstractMongoEventListener<Adve
 			log.error("onAfterSave error > can't process event source " + event.getSource());
 		}
 	}
-} 
+}

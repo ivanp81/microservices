@@ -15,21 +15,21 @@ public class AdvertiseControllerTest {
 	private static final String DEFAULT_ID = "11111111";
 
 	private AdvertiseController advertiseController;
-   
-    @Mock
-    private AdvertiseRepository advertiseRepository;
-    
-    @Before
-    public void setUp() {
-    	
-        initMocks(this);
-        advertiseController = new AdvertiseController(advertiseRepository);
-    }
-        
-    @Test
-    public void testGetAdvertise() {
 
-    	advertiseController.getAdvertise(DEFAULT_ID);
-        verify(advertiseRepository).findOne(DEFAULT_ID);
-    }
+	@Mock
+	private AdvertiseRepository advertiseRepository;
+
+	@Before
+	public void setUp() {
+
+		initMocks(this);
+		advertiseController = new AdvertiseController(advertiseRepository);
+	}
+
+	@Test
+	public void testGetAdvertise() {
+
+		advertiseController.getAdvertise(DEFAULT_ID);
+		verify(advertiseRepository).findOne(DEFAULT_ID);
+	}
 }

@@ -30,42 +30,38 @@ public class AdvertiseControllerTest {
 
 	private static final String DEFAULT_ID = "11111111";
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-    @ClassRule
-    public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
+	@ClassRule
+	public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
 
-    //exclude rabbit from the test
-    @MockBean
-    private RabbitAdmin rabbitAdmin;
-    
+	// exclude rabbit from the test
+	@MockBean
+	private RabbitAdmin rabbitAdmin;
+
 	@Autowired
-    private MockMvc mvc;
-	
+	private MockMvc mvc;
+
 	@Autowired
 	private AdvertiseRepository addressRepository;
-		
-	private Advertise advertise;
-	
-    @Before
-    public void setUp() {
-    	
-    	advertise = new Advertise.Builder()
-								 .withId(DEFAULT_ID)
-								 .withTitle(DEFAULT_TITLE)
-								 .withContent(DEFAULT_CONTENT)
-								 .build();
 
-    	addressRepository.deleteAll();
-    	addressRepository.save(advertise);
-    }
-    
+	private Advertise advertise;
+
+	@Before
+	public void setUp() {
+
+		advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT)
+				.build();
+
+		addressRepository.deleteAll();
+		addressRepository.save(advertise);
+	}
+
 	@Test
 	public void testGetAdvertise() throws Exception {
 
-		  mvc.perform(get("/api/advertises/" + DEFAULT_ID))
-		  .andExpect(status().isOk()).andExpect(jsonPath("$.id", is(DEFAULT_ID)))
-			.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
-			.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
-}
+		mvc.perform(get("/api/advertises/" + DEFAULT_ID)).andExpect(status().isOk())
+				.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
+				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+	}
 }

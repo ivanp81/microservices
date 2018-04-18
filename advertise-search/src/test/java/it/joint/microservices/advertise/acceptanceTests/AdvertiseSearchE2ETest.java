@@ -15,17 +15,15 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import java.net.URI;
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = {AcceptanceTestsConfiguration.class })
+@ContextConfiguration(classes = { AcceptanceTestsConfiguration.class })
 public class AdvertiseSearchE2ETest {
 
 	@Autowired
 	private URI baseUri;
-		
+
 	@Test
 	public void testGetAdvertise() {
 
-		when().get(baseUri.toString() + "/api/advertises/1")
-			.then()
-			.statusCode(equalTo(200));
+		when().get(baseUri.toString() + "/api/advertises/1").then().statusCode(equalTo(200));
 	}
 }

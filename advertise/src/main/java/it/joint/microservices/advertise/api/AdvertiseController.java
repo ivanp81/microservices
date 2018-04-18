@@ -18,36 +18,36 @@ public class AdvertiseController {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private AdvertiseRepository advertiseRepository;
-	
+
 	@Autowired
 	public AdvertiseController(AdvertiseRepository advertiseRepository) {
 		this.advertiseRepository = advertiseRepository;
 	}
 
 	@PostMapping("/advertises")
-    public Advertise createAdvertise(@Valid @RequestBody Advertise advertise) {
-    	log.info("REST request to createAdvertise : {}", advertise);	
-        Advertise createdAdvertise = advertiseRepository.save(advertise);
-        return createdAdvertise;
-    }
-	
+	public Advertise createAdvertise(@Valid @RequestBody Advertise advertise) {
+		log.info("REST request to createAdvertise : {}", advertise);
+		Advertise createdAdvertise = advertiseRepository.save(advertise);
+		return createdAdvertise;
+	}
+
 	@PutMapping("/advertises")
-    public Advertise updateAdvertise(@Valid @RequestBody Advertise advertise) {
-    	log.info("REST request to updateAdvertise : {}", advertise);	
-        Advertise createdAdvertise = advertiseRepository.save(advertise);
-        return createdAdvertise;
-    }
-	
+	public Advertise updateAdvertise(@Valid @RequestBody Advertise advertise) {
+		log.info("REST request to updateAdvertise : {}", advertise);
+		Advertise createdAdvertise = advertiseRepository.save(advertise);
+		return createdAdvertise;
+	}
+
 	@DeleteMapping("/advertises/{id}")
-    public void deleteAdvertise(@PathVariable String id) {
-        log.info("REST request to deleteAdvertise : {}", id);
-        advertiseRepository.delete(id);
-    }
-	
-    @GetMapping("/advertises/{id}")
-    public Advertise getAdvertise(@PathVariable String id) {
-        log.info("REST request to getAdvertise : {}", id);
-        Advertise advertise = advertiseRepository.findOne(id);
-        return advertise;
-    }
+	public void deleteAdvertise(@PathVariable String id) {
+		log.info("REST request to deleteAdvertise : {}", id);
+		advertiseRepository.delete(id);
+	}
+
+	@GetMapping("/advertises/{id}")
+	public Advertise getAdvertise(@PathVariable String id) {
+		log.info("REST request to getAdvertise : {}", id);
+		Advertise advertise = advertiseRepository.findOne(id);
+		return advertise;
+	}
 }

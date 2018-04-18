@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AcceptanceTestsConfig {
-	
+
 	private static final String ADVERTISE_URL = System.getProperty("acceptance.advertise.url", "http://localhost:8080");
-	
+
 	@Bean
 	public URI baseUri() throws URISyntaxException {
 		return new URI(ADVERTISE_URL);

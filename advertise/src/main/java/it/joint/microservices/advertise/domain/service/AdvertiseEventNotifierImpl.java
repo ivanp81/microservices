@@ -19,14 +19,15 @@ public class AdvertiseEventNotifierImpl implements AdvertiseEventNotifier {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private RabbitTemplate rabbitTemplate;
-		
+
 	@Autowired
 	public AdvertiseEventNotifierImpl(RabbitTemplate rabbitTemplate) {
 		this.rabbitTemplate = rabbitTemplate;
 	}
-	
+
 	public void broadcastEvent(AdvertiseEvent event, Object message) throws JsonProcessingException {
 		log.info("broadcastEvent " + event.getName().toUpperCase() + " with message " + message);
-		rabbitTemplate.convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(), JSONUtil.serializeToJson(message));
-    }
+		rabbitTemplate.convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(),
+				JSONUtil.serializeToJson(message));
+	}
 }

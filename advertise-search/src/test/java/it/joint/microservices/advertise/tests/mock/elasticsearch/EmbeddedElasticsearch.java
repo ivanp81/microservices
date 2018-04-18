@@ -7,34 +7,30 @@ import org.elasticsearch.node.NodeBuilder;
 
 public class EmbeddedElasticsearch {
 
-    private static final String DEFAULT_HOME_DIRECTORY = "target/elasticsearch-home";
+	private static final String DEFAULT_HOME_DIRECTORY = "target/elasticsearch-home";
 
-    private final Node node;
+	private final Node node;
 
-    public EmbeddedElasticsearch() {	
-        this(DEFAULT_HOME_DIRECTORY);
-    }
+	public EmbeddedElasticsearch() {
+		this(DEFAULT_HOME_DIRECTORY);
+	}
 
-    public EmbeddedElasticsearch(String homeDirectory) {
+	public EmbeddedElasticsearch(String homeDirectory) {
 
-        Settings.Builder elasticsearchSettings = Settings.builder()
-        												 .put("path.home", homeDirectory);
+		Settings.Builder elasticsearchSettings = Settings.builder().put("path.home", homeDirectory);
 
-        this.node = NodeBuilder.nodeBuilder()
-        			.local(true)
-                    .settings(elasticsearchSettings.build())
-                    .node();
-    }
+		this.node = NodeBuilder.nodeBuilder().local(true).settings(elasticsearchSettings.build()).node();
+	}
 
-    public void startNode() {
-    	node.start();
-    }
+	public void startNode() {
+		node.start();
+	}
 
-    public Client getClient() {
-        return node.client();
-    }
+	public Client getClient() {
+		return node.client();
+	}
 
-    public void stopNode() {    	
-        node.close();
-    }
+	public void stopNode() {
+		node.close();
+	}
 }

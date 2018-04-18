@@ -21,50 +21,47 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")           
+@ActiveProfiles("test")
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class AdvertiseEventNotifierTest {
 
 	private static final String DEFAULT_ID = "11111111";
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-    @ClassRule
-    public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
+	@ClassRule
+	public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
 
-    @Autowired
-    private AdvertiseEventNotifier advertiseEventNotifier;
-        
-    @Autowired
-    private DummyAdvertiseBroadcastReceiver broadcastReceiver;
-    
-    @Test
-    public void testBroadCastSavedEvent() throws Exception {
+	@Autowired
+	private AdvertiseEventNotifier advertiseEventNotifier;
 
-    	broadcastReceiver.initCounter();
-    	Object message = new Advertise.Builder().withId(DEFAULT_ID)
-    											.withTitle(DEFAULT_TITLE)
-				   						        .withContent(DEFAULT_CONTENT)
-				   						        .build();
-    	
-    	AdvertiseEvent event = AdvertiseEvent.SAVED;
-    	advertiseEventNotifier.broadcastEvent(event, message);
-    	Thread.sleep(3000);
-    	
-    	assertThat(broadcastReceiver.getCounter(), equalTo(1));
-    }
-    
-    @Test
-    public void testBroadCastDeletedEvent() throws Exception {
+	@Autowired
+	private DummyAdvertiseBroadcastReceiver broadcastReceiver;
 
-    	broadcastReceiver.initCounter();
-    	Object message = new Advertise.Builder().withId(DEFAULT_ID)
-				   						        .build();
-    	
-    	AdvertiseEvent event = AdvertiseEvent.DELETED;
-    	advertiseEventNotifier.broadcastEvent(event, message);
-    	Thread.sleep(3000);
-    	
-    	assertThat(broadcastReceiver.getCounter(), equalTo(1));
-    }
+	@Test
+	public void testBroadCastSavedEvent() throws Exception {
+
+		broadcastReceiver.initCounter();
+		Object message = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+				.withContent(DEFAULT_CONTENT).build();
+
+		AdvertiseEvent event = AdvertiseEvent.SAVED;
+		advertiseEventNotifier.broadcastEvent(event, message);
+		Thread.sleep(3000);
+
+		assertThat(broadcastReceiver.getCounter(), equalTo(1));
+	}
+
+	@Test
+	public void testBroadCastDeletedEvent() throws Exception {
+
+		broadcastReceiver.initCounter();
+		Object message = new Advertise.Builder().withId(DEFAULT_ID).build();
+
+		AdvertiseEvent event = AdvertiseEvent.DELETED;
+		advertiseEventNotifier.broadcastEvent(event, message);
+		Thread.sleep(3000);
+
+		assertThat(broadcastReceiver.getCounter(), equalTo(1));
+	}
 }

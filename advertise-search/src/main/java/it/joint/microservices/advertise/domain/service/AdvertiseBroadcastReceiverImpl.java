@@ -19,33 +19,33 @@ public class AdvertiseBroadcastReceiverImpl implements AdvertiseBroadcastReceive
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private AdvertiseRepository advertiseRepository;
-	
+
 	@Autowired
 	public AdvertiseBroadcastReceiverImpl(AdvertiseRepository advertiseRepository) {
 		this.advertiseRepository = advertiseRepository;
 	}
-	
+
 	@RabbitListener(queues = RabbitMQConfig.advertiseSavedQueueName)
-    public void onAdvertiseCreatedMessage(String advertiseSaved) {
+	public void onAdvertiseCreatedMessage(String advertiseSaved) {
 		log.info("onAdvertiseCreatedMessage " + advertiseSaved);
 		try {
 			Advertise advertise = JSONUtil.deserializeToObject(advertiseSaved);
-	        advertiseRepository.save(advertise);
-		} catch (IOException e) {	
+			advertiseRepository.save(advertise);
+		} catch (IOException e) {
 			// TODO to improve
-			log.error("onAdvertiseCreatedMessage error > can't process ", advertiseSaved);			
+			log.error("onAdvertiseCreatedMessage error > can't process ", advertiseSaved);
 		}
-    }
-	
+	}
+
 	@RabbitListener(queues = RabbitMQConfig.advertiseDeletedQueueName)
-    public void onAdvertiseDeletedMessage(String advertiseDeleted) {
+	public void onAdvertiseDeletedMessage(String advertiseDeleted) {
 		log.info("onAdvertiseDeletedMessage " + advertiseDeleted);
 		try {
 			Advertise advertise = JSONUtil.deserializeToObject(advertiseDeleted);
-	        advertiseRepository.delete(advertise);
+			advertiseRepository.delete(advertise);
 		} catch (IOException e) {
 			// TODO to improve
-			log.error("onAdvertiseDeletedMessage error > can't process ", advertiseDeleted);					
+			log.error("onAdvertiseDeletedMessage error > can't process ", advertiseDeleted);
 		}
-    }
+	}
 }
