@@ -4,11 +4,11 @@ import org.junit.rules.ExternalResource;
 
 public class EmbeddedElasticSearchRule extends ExternalResource {
 
-    private static EmbeddedElasticsearch embeddedElasticSearch;
+    private static EmbeddedElasticSearch embeddedElasticSearch;
 
     @Override
     protected void before() throws Throwable {
-	embeddedElasticSearch = new EmbeddedElasticsearch();
+	embeddedElasticSearch = new EmbeddedElasticSearch();
 	embeddedElasticSearch.startNode();
     }
 

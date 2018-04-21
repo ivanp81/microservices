@@ -5,17 +5,17 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.elasticsearch.node.NodeBuilder;
 
-public class EmbeddedElasticsearch {
+public class EmbeddedElasticSearch {
 
     private static final String DEFAULT_HOME_DIRECTORY = "target/elasticsearch-home";
 
     private final Node node;
 
-    public EmbeddedElasticsearch() {
+    public EmbeddedElasticSearch() {
 	this(DEFAULT_HOME_DIRECTORY);
     }
 
-    public EmbeddedElasticsearch(String homeDirectory) {
+    public EmbeddedElasticSearch(String homeDirectory) {
 
 	Settings.Builder elasticsearchSettings = Settings.builder().put("path.home", homeDirectory);
 
