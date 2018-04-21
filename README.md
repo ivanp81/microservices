@@ -65,13 +65,11 @@ $ npm run build
 ```
 
 #### Build the backend
-From folder microservices:
 ```
 $ mvn clean package
 ```
 
 #### Build Docker images
-From folder microservices:
 ```
 export SPRING_PROFILES_ACTIVE=*a spring profile (e.g testing, prod)*
 export MONGODB_ADVERTISE_PASSWORD=*password for advertise db*
