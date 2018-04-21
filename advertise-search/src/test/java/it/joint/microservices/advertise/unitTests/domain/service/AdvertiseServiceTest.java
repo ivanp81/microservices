@@ -15,24 +15,24 @@ import it.joint.microservices.advertise.domain.service.AdvertiseServiceImpl;
 
 public class AdvertiseServiceTest {
 
-	private static final String QUERY = "AAAAAAAAAA";
+    private static final String QUERY = "AAAAAAAAAA";
 
-	private AdvertiseService advertiseService;
+    private AdvertiseService advertiseService;
 
-	@Mock
-	ElasticsearchTemplate elasticsearchTemplate;
+    @Mock
+    ElasticsearchTemplate elasticsearchTemplate;
 
-	@Before
-	public void setUp() {
-		initMocks(this);
-		advertiseService = new AdvertiseServiceImpl(elasticsearchTemplate);
-	}
+    @Before
+    public void setUp() {
+	initMocks(this);
+	advertiseService = new AdvertiseServiceImpl(elasticsearchTemplate);
+    }
 
-	@Test
-	@SuppressWarnings("unchecked")
-	public void testGetAdvertise() {
+    @Test
+    @SuppressWarnings("unchecked")
+    public void testGetAdvertise() {
 
-		advertiseService.searchAdvertises(QUERY);
-		verify(elasticsearchTemplate).queryForList(isA(SearchQuery.class), isA(Class.class));
-	}
+	advertiseService.searchAdvertises(QUERY);
+	verify(elasticsearchTemplate).queryForList(isA(SearchQuery.class), isA(Class.class));
+    }
 }

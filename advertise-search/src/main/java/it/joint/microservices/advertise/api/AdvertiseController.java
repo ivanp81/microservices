@@ -15,19 +15,19 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/api/searchengine")
 public class AdvertiseController {
 
-	private final Logger log = LoggerFactory.getLogger(AdvertiseController.class);
+    private final Logger log = LoggerFactory.getLogger(AdvertiseController.class);
 
-	private AdvertiseService advertiseService;
+    private AdvertiseService advertiseService;
 
-	@Autowired
-	public AdvertiseController(AdvertiseService advertiseService) {
-		this.advertiseService = advertiseService;
-	}
+    @Autowired
+    public AdvertiseController(AdvertiseService advertiseService) {
+	this.advertiseService = advertiseService;
+    }
 
-	@GetMapping("/advertises/_search")
-	public List<Advertise> searchAdvertises(@RequestParam("q") String q) {
+    @GetMapping("/advertises/_search")
+    public List<Advertise> searchAdvertises(@RequestParam("q") String q) {
 
-		log.info("REST request to getAdvertise : {}", q);
-		return advertiseService.searchAdvertises(q);
-	}
+	log.info("REST request to getAdvertise : {}", q);
+	return advertiseService.searchAdvertises(q);
+    }
 }

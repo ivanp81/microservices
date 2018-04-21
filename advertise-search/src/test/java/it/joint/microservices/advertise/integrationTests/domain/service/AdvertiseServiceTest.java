@@ -30,52 +30,52 @@ import it.joint.microservices.advertise.domain.service.AdvertiseServiceImpl;
 @EnableAutoConfiguration(exclude = RabbitAutoConfiguration.class)
 public class AdvertiseServiceTest {
 
-	private static final String DEFAULT_ID = "11111111";
-	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String DEFAULT_ID = "11111111";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-	private static final String QUERY = "AAAAAAAAAA";
+    private static final String QUERY = "AAAAAAAAAA";
 
-	// exclude rabbit from the test
-	@MockBean
-	private RabbitAdmin rabbitAdmin;
+    // exclude rabbit from the test
+    @MockBean
+    private RabbitAdmin rabbitAdmin;
 
-	@Autowired
-	private AdvertiseService advertiseService;
+    @Autowired
+    private AdvertiseService advertiseService;
 
-	@Autowired
-	private ElasticsearchTemplate elasticsearchTemplate;
+    @Autowired
+    private ElasticsearchTemplate elasticsearchTemplate;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		advertiseService = new AdvertiseServiceImpl(elasticsearchTemplate);
+	advertiseService = new AdvertiseServiceImpl(elasticsearchTemplate);
 
-		elasticsearchTemplate.deleteIndex(Advertise.class);
-		elasticsearchTemplate.createIndex(Advertise.class);
-		elasticsearchTemplate.putMapping(Advertise.class);
-		elasticsearchTemplate.refresh(Advertise.class);
+	elasticsearchTemplate.deleteIndex(Advertise.class);
+	elasticsearchTemplate.createIndex(Advertise.class);
+	elasticsearchTemplate.putMapping(Advertise.class);
+	elasticsearchTemplate.refresh(Advertise.class);
 
-		IndexQuery advertise = buildIndex();
-		elasticsearchTemplate.index(advertise);
-		elasticsearchTemplate.refresh(Advertise.class);
-	}
+	IndexQuery advertise = buildIndex();
+	elasticsearchTemplate.index(advertise);
+	elasticsearchTemplate.refresh(Advertise.class);
+    }
 
-	private IndexQuery buildIndex() {
+    private IndexQuery buildIndex() {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
 
-		IndexQuery indexQuery = new IndexQueryBuilder().withId(advertise.getId()).withObject(advertise).build();
+	IndexQuery indexQuery = new IndexQueryBuilder().withId(advertise.getId()).withObject(advertise).build();
 
-		return indexQuery;
-	}
+	return indexQuery;
+    }
 
-	@Test
-	public void testSearchAdvertise() {
+    @Test
+    public void testSearchAdvertise() {
 
-		List<Advertise> advertises = advertiseService.searchAdvertises(QUERY);
+	List<Advertise> advertises = advertiseService.searchAdvertises(QUERY);
 
-		assertThat(advertises, hasSize(1));
-	}
+	assertThat(advertises, hasSize(1));
+    }
 }

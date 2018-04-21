@@ -18,15 +18,15 @@ import java.net.URI;
 @ContextConfiguration(classes = { AcceptanceTestsConfiguration.class })
 public class AdvertiseSearchE2ETest {
 
-	@Autowired
-	private URI baseUri;
+    @Autowired
+    private URI baseUri;
 
-	private static final String QUERY = "Lorem ipsum";
+    private static final String QUERY = "Lorem ipsum";
 
-	@Test
-	public void testGetAdvertise() {
+    @Test
+    public void testGetAdvertise() {
 
-		when().get(baseUri.toString() + "/api/searchengine/advertises/_search?q=" + QUERY).then()
-				.statusCode(equalTo(200));
-	}
+	when().get(baseUri.toString() + "/api/searchengine/advertises/_search?q=" + QUERY).then()
+		.statusCode(equalTo(200));
+    }
 }

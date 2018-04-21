@@ -27,45 +27,45 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 public class AdvertiseBroadcastReceiverTest {
 
-	private static final String DEFAULT_ID = "11111111";
-	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String DEFAULT_ID = "11111111";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-	@ClassRule
-	public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
+    @ClassRule
+    public static EmbeddedBrokerRule embeddedBrokerRule = new EmbeddedBrokerRule();
 
-	@ClassRule
-	public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
+    @ClassRule
+    public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
 
-	@Autowired
-	private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
-	@Autowired
-	private AdvertiseRepository advertiseRepository;
+    @Autowired
+    private AdvertiseRepository advertiseRepository;
 
-	@Test
-	public void testOnAdvertiseCreatedMessage() throws Exception {
+    @Test
+    public void testOnAdvertiseCreatedMessage() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
-		String advertiseSaved = JSONUtil.serializeToJson(advertise);
-		rabbitTemplate.convertAndSend(RabbitMQConfig.advertiseSavedQueueName, advertiseSaved);
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
+	String advertiseSaved = JSONUtil.serializeToJson(advertise);
+	rabbitTemplate.convertAndSend(RabbitMQConfig.advertiseSavedQueueName, advertiseSaved);
 
-		Thread.sleep(3000);
-		assertThat(advertiseRepository.findOne(DEFAULT_ID), equalTo(advertise));
-	}
+	Thread.sleep(3000);
+	assertThat(advertiseRepository.findOne(DEFAULT_ID), equalTo(advertise));
+    }
 
-	@Test
-	public void testOnAdvertiseDeletedMessage() throws Exception {
+    @Test
+    public void testOnAdvertiseDeletedMessage() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
-		advertiseRepository.save(advertise);
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
+	advertiseRepository.save(advertise);
 
-		String advertiseDeleted = JSONUtil.serializeToJson(advertise);
-		rabbitTemplate.convertAndSend(RabbitMQConfig.advertiseDeletedQueueName, advertiseDeleted);
+	String advertiseDeleted = JSONUtil.serializeToJson(advertise);
+	rabbitTemplate.convertAndSend(RabbitMQConfig.advertiseDeletedQueueName, advertiseDeleted);
 
-		Thread.sleep(3000);
-		assertThat(advertiseRepository.findOne(DEFAULT_ID), equalTo(null));
-	}
+	Thread.sleep(3000);
+	assertThat(advertiseRepository.findOne(DEFAULT_ID), equalTo(null));
+    }
 }

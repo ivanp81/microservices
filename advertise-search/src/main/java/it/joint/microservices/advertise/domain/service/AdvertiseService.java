@@ -6,5 +6,5 @@ import it.joint.microservices.advertise.domain.model.Advertise;
 
 public interface AdvertiseService {
 
-	public List<Advertise> searchAdvertises(String query);
+    public List<Advertise> searchAdvertises(String query);
 }

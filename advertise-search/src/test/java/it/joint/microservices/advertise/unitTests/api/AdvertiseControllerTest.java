@@ -12,24 +12,24 @@ import it.joint.microservices.advertise.domain.service.AdvertiseService;
 
 public class AdvertiseControllerTest {
 
-	private static final String QUERY = "AAA";
+    private static final String QUERY = "AAA";
 
-	private AdvertiseController advertiseController;
+    private AdvertiseController advertiseController;
 
-	@Mock
-	private AdvertiseService advertiseService;
+    @Mock
+    private AdvertiseService advertiseService;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		initMocks(this);
-		advertiseController = new AdvertiseController(advertiseService);
-	}
+	initMocks(this);
+	advertiseController = new AdvertiseController(advertiseService);
+    }
 
-	@Test
-	public void testGetAdvertise() {
+    @Test
+    public void testGetAdvertise() {
 
-		advertiseController.searchAdvertises(QUERY);
-		verify(advertiseService).searchAdvertises(QUERY);
-	}
+	advertiseController.searchAdvertises(QUERY);
+	verify(advertiseService).searchAdvertises(QUERY);
+    }
 }

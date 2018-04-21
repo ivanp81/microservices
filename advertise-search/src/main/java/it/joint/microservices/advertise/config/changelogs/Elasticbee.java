@@ -8,24 +8,24 @@ import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
 
 public class Elasticbee implements InitializingBean {
 
-	@Autowired
-	private AdvertiseRepository advertiseRepository;
+    @Autowired
+    private AdvertiseRepository advertiseRepository;
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		execute();
-	}
+    @Override
+    public void afterPropertiesSet() throws Exception {
+	execute();
+    }
 
-	public void execute() {
+    public void execute() {
 
-		advertiseRepository.deleteAll();
+	advertiseRepository.deleteAll();
 
-		Advertise advertise = new Advertise();
-		advertise.setId("1");
-		advertise.setTitle("Java back-end developer");
-		advertise.setContent("Lorem ipsum");
+	Advertise advertise = new Advertise();
+	advertise.setId("1");
+	advertise.setTitle("Java back-end developer");
+	advertise.setContent("Lorem ipsum");
 
-		advertiseRepository.save(advertise);
-	}
+	advertiseRepository.save(advertise);
+    }
 
 }

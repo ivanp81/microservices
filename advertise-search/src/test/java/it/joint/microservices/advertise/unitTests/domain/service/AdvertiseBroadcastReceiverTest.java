@@ -18,39 +18,39 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class AdvertiseBroadcastReceiverTest {
 
-	private static final String DEFAULT_ID = "11111111";
-	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String DEFAULT_ID = "11111111";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-	private AdvertiseBroadcastReceiver advertiseBroadcastReceiver;
+    private AdvertiseBroadcastReceiver advertiseBroadcastReceiver;
 
-	@Mock
-	private AdvertiseRepository advertiseRepository;
+    @Mock
+    private AdvertiseRepository advertiseRepository;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		initMocks(this);
-		advertiseBroadcastReceiver = new AdvertiseBroadcastReceiverImpl(advertiseRepository);
-	}
+	initMocks(this);
+	advertiseBroadcastReceiver = new AdvertiseBroadcastReceiverImpl(advertiseRepository);
+    }
 
-	@Test
-	public void testOnAdvertiseCreatedMessage() throws JsonProcessingException {
+    @Test
+    public void testOnAdvertiseCreatedMessage() throws JsonProcessingException {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
 
-		advertiseBroadcastReceiver.onAdvertiseCreatedMessage(JSONUtil.serializeToJson(advertise));
+	advertiseBroadcastReceiver.onAdvertiseCreatedMessage(JSONUtil.serializeToJson(advertise));
 
-		verify(advertiseRepository).save(advertise);
-	}
+	verify(advertiseRepository).save(advertise);
+    }
 
-	@Test
-	public void testBroadCastDeletedEvent() throws JsonProcessingException {
+    @Test
+    public void testBroadCastDeletedEvent() throws JsonProcessingException {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).build();
-		advertiseBroadcastReceiver.onAdvertiseDeletedMessage(JSONUtil.serializeToJson(advertise));
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).build();
+	advertiseBroadcastReceiver.onAdvertiseDeletedMessage(JSONUtil.serializeToJson(advertise));
 
-		verify(advertiseRepository).delete(advertise);
-	}
+	verify(advertiseRepository).delete(advertise);
+    }
 }
