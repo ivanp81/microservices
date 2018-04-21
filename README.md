@@ -1,10 +1,10 @@
 # Advertise Microservices
 
-This is a proof-of-concept application, which demonstrates various type of test in an hypothetical Microservice Architecture.  
+This is a proof-of-concept application, which demonstrates against an hypothetical Microservice Architecture: 
+- architecture component containerization through Docker
+- various type of test 
 
-As the project focus is provide a testing strategies the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and is not tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
-
-Every component of the architecture is containerized through Docker.
+As the project focus is to provide a testing strategies the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
 Despite the premises, a pretty neat ReactJS user interface is provided.
 
@@ -21,7 +21,13 @@ Despite the premises, a pretty neat ReactJS user interface is provided.
 - ElasticSearch
 - RabbitMQ         
 
-# Test
+# Testing
+Following are the assumption made for testing:
+
+- Unit tests are solitary (use Mocks) and perform behavior verification 
+- Integration\Component tests are sociable (use some real collaborators), and perform state verification
+- All the external system component should be runned as in memory process 
+
 #### Framework
 - Junit
 - Mockito
@@ -32,6 +38,22 @@ Despite the premises, a pretty neat ReactJS user interface is provided.
 - Embedded MongoDB
 - Embedded ElasticSearch
 - QPID broker
+
+## Run the test
+
+#### Unit test  
+```
+$ mvn test
+```
+
+#### Integration\Component test
+```
+$ mvn verify
+```
+#### Acceptance test
+```
+$ mvn verify -Pacceptance-tests -Dacceptance.advertise.url=URL_TO_ADVERTISE_TESTING_ENVIRONMENT -Dacceptance.advertise-search.url=URL_TO_ADVERTISE_SEARCH_TESTING_ENVIRONMENT
+```
 
 # Build the project
 
