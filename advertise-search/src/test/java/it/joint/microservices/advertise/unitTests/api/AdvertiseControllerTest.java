@@ -8,28 +8,28 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import it.joint.microservices.advertise.api.AdvertiseController;
-import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
+import it.joint.microservices.advertise.domain.service.AdvertiseService;
 
 public class AdvertiseControllerTest {
 
-	private static final String DEFAULT_ID = "11111111";
-
+	private static final String QUERY = "AAA";
+	
 	private AdvertiseController advertiseController;
 
 	@Mock
-	private AdvertiseRepository advertiseRepository;
+	private AdvertiseService advertiseService;
 
 	@Before
 	public void setUp() {
 
 		initMocks(this);
-		advertiseController = new AdvertiseController(advertiseRepository);
+		advertiseController = new AdvertiseController(advertiseService);
 	}
 
 	@Test
 	public void testGetAdvertise() {
 
-		advertiseController.getAdvertise(DEFAULT_ID);
-		verify(advertiseRepository).findOne(DEFAULT_ID);
+		advertiseController.searchAdvertises(QUERY);
+		verify(advertiseService).searchAdvertises(QUERY);
 	}
 }

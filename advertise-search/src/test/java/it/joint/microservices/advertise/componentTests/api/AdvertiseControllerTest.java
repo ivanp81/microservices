@@ -32,6 +32,8 @@ public class AdvertiseControllerTest {
 	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
 	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
+	private static final String QUERY = "AAAAAAAAAA";
+
 	@ClassRule
 	public static EmbeddedElasticSearchRule embeddedElasticSearchRule = new EmbeddedElasticSearchRule();
 
@@ -60,8 +62,8 @@ public class AdvertiseControllerTest {
 	@Test
 	public void testGetAdvertise() throws Exception {
 
-		mvc.perform(get("/api/advertises/" + DEFAULT_ID)).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
-				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+		mvc.perform(get("/api/searchengine/advertises/_search?q=" + QUERY)).andExpect(status().isOk())
+				.andExpect(jsonPath("$[0].id", is(DEFAULT_ID))).andExpect(jsonPath("$[0].title", is(DEFAULT_TITLE)))
+				.andExpect(jsonPath("$[0].content", is(DEFAULT_CONTENT)));
 	}
 }

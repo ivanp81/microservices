@@ -28,5 +28,6 @@ docker stop advertise-search
 docker rm advertise-search
 docker rmi ivanp81/advertise-search
 
-mvn clean package -DskipTests
+cd ui && npm run build --production
+cd .. && mvn clean package -DskipTests
 docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build 

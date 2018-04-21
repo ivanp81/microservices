@@ -21,9 +21,12 @@ public class AdvertiseSearchE2ETest {
 	@Autowired
 	private URI baseUri;
 
+	private static final String QUERY = "Lorem ipsum";
+
+	
 	@Test
 	public void testGetAdvertise() {
 
-		when().get(baseUri.toString() + "/api/advertises/1").then().statusCode(equalTo(200));
+		when().get(baseUri.toString() + "/api/searchengine/advertises/_search?q=" + QUERY).then().statusCode(equalTo(200));
 	}
 }

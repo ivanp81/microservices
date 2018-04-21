@@ -1,10 +1,12 @@
 package it.joint.microservices.advertise.api;
 
 import it.joint.microservices.advertise.domain.model.Advertise;
-import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
+import it.joint.microservices.advertise.domain.service.AdvertiseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,17 +17,17 @@ public class AdvertiseController {
 
 	private final Logger log = LoggerFactory.getLogger(AdvertiseController.class);
 
-	private AdvertiseRepository advertiseRepository;
+	private AdvertiseService advertiseService;
 
 	@Autowired
-	public AdvertiseController(AdvertiseRepository advertiseRepository) {
-		this.advertiseRepository = advertiseRepository;
+	public AdvertiseController(AdvertiseService advertiseService) {
+		this.advertiseService = advertiseService;
 	}
 
-	@GetMapping("/advertises/{id}")
-	public Advertise getAdvertise(@PathVariable String id) {
-		log.info("REST request to getAdvertise : {}", id);
-		Advertise advertise = advertiseRepository.findOne(id);
-		return advertise;
+	@GetMapping("/advertises/_search")
+	public List<Advertise> searchAdvertises(@RequestParam("q") String q) {
+		
+		log.info("REST request to getAdvertise : {}", q);
+		return advertiseService.searchAdvertises(q);
 	}
 }
