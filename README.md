@@ -81,6 +81,10 @@ run docker-compose up
 - http://localhost:80 - UI
 - http://localhost:8080 - Gateway
 - http://localhost:8081 - Advertise microservice
-- http://localhost:8081 - Advertise-search microservice
+- http://localhost:8082 - Advertise-search microservice
 - http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
 
+# Conclusion
+As this project is a work in progress, further extension of the system could be:
+- Add a security system (e.g. Oauth2)
+- Decide the Cloud infrastructure where run the project
