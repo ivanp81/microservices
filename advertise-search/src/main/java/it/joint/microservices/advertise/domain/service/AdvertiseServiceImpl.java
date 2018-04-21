@@ -35,6 +35,6 @@ public class AdvertiseServiceImpl implements AdvertiseService {
 		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query.toLowerCase())
 				.operator(AND).field("title").field("content").type(MultiMatchQueryBuilder.Type.BEST_FIELDS)).build();
 
-		return elasticsearchTemplate.queryForList(searchQuery, Advertise.class);
+	    return elasticsearchTemplate.queryForList(searchQuery, Advertise.class);
 	}
 }
