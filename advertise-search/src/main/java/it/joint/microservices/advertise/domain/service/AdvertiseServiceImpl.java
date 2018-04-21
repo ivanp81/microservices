@@ -20,25 +20,21 @@ import it.joint.microservices.advertise.domain.model.Advertise;
 public class AdvertiseServiceImpl implements AdvertiseService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	private ElasticsearchTemplate elasticsearchTemplate;
-    
+
 	@Autowired
 	public AdvertiseServiceImpl(ElasticsearchTemplate elasticsearchTemplate) {
 		this.elasticsearchTemplate = elasticsearchTemplate;
 	}
 
 	public List<Advertise> searchAdvertises(String query) {
-    	
+
 		log.info("searchAnnunci with query : {}", query);
-			
-    	SearchQuery searchQuery = new NativeSearchQueryBuilder()
-    			  .withQuery(multiMatchQuery(query.toLowerCase()).operator(AND)
-    			    .field("title")
-    			    .field("content")
-    			    .type(MultiMatchQueryBuilder.Type.BEST_FIELDS))
-    			  .build();
-    	    	
-    	return elasticsearchTemplate.queryForList(searchQuery, Advertise.class);
-    }
+
+		SearchQuery searchQuery = new NativeSearchQueryBuilder().withQuery(multiMatchQuery(query.toLowerCase())
+				.operator(AND).field("title").field("content").type(MultiMatchQueryBuilder.Type.BEST_FIELDS)).build();
+
+		return elasticsearchTemplate.queryForList(searchQuery, Advertise.class);
+	}
 }

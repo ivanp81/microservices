@@ -13,7 +13,7 @@ import it.joint.microservices.advertise.domain.service.AdvertiseService;
 public class AdvertiseControllerTest {
 
 	private static final String QUERY = "AAA";
-	
+
 	private AdvertiseController advertiseController;
 
 	@Mock

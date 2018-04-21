@@ -23,10 +23,10 @@ public class AdvertiseSearchE2ETest {
 
 	private static final String QUERY = "Lorem ipsum";
 
-	
 	@Test
 	public void testGetAdvertise() {
 
-		when().get(baseUri.toString() + "/api/searchengine/advertises/_search?q=" + QUERY).then().statusCode(equalTo(200));
+		when().get(baseUri.toString() + "/api/searchengine/advertises/_search?q=" + QUERY).then()
+				.statusCode(equalTo(200));
 	}
 }

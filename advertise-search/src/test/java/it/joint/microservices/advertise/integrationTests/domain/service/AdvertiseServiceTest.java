@@ -27,7 +27,7 @@ import it.joint.microservices.advertise.domain.service.AdvertiseServiceImpl;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-@EnableAutoConfiguration(exclude=RabbitAutoConfiguration.class)
+@EnableAutoConfiguration(exclude = RabbitAutoConfiguration.class)
 public class AdvertiseServiceTest {
 
 	private static final String DEFAULT_ID = "11111111";
@@ -45,40 +45,37 @@ public class AdvertiseServiceTest {
 
 	@Autowired
 	private ElasticsearchTemplate elasticsearchTemplate;
-    
+
 	@Before
 	public void setUp() {
-		
+
 		advertiseService = new AdvertiseServiceImpl(elasticsearchTemplate);
 
 		elasticsearchTemplate.deleteIndex(Advertise.class);
-        elasticsearchTemplate.createIndex(Advertise.class);
-        elasticsearchTemplate.putMapping(Advertise.class);
-        elasticsearchTemplate.refresh(Advertise.class);
+		elasticsearchTemplate.createIndex(Advertise.class);
+		elasticsearchTemplate.putMapping(Advertise.class);
+		elasticsearchTemplate.refresh(Advertise.class);
 
-        IndexQuery advertise = buildIndex();
-        elasticsearchTemplate.index(advertise);
-        elasticsearchTemplate.refresh(Advertise.class);
+		IndexQuery advertise = buildIndex();
+		elasticsearchTemplate.index(advertise);
+		elasticsearchTemplate.refresh(Advertise.class);
 	}
-	
+
 	private IndexQuery buildIndex() {
-		
+
 		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
 				.withContent(DEFAULT_CONTENT).build();
-		
-		IndexQuery indexQuery = new IndexQueryBuilder()
-                .withId(advertise.getId())
-                .withObject(advertise)
-                .build();
-		
+
+		IndexQuery indexQuery = new IndexQueryBuilder().withId(advertise.getId()).withObject(advertise).build();
+
 		return indexQuery;
 	}
 
 	@Test
 	public void testSearchAdvertise() {
-		
+
 		List<Advertise> advertises = advertiseService.searchAdvertises(QUERY);
-		
+
 		assertThat(advertises, hasSize(1));
 	}
 }

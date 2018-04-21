@@ -26,7 +26,7 @@ public class AdvertiseController {
 
 	@GetMapping("/advertises/_search")
 	public List<Advertise> searchAdvertises(@RequestParam("q") String q) {
-		
+
 		log.info("REST request to getAdvertise : {}", q);
 		return advertiseService.searchAdvertises(q);
 	}

@@ -16,12 +16,12 @@ import it.joint.microservices.advertise.domain.service.AdvertiseServiceImpl;
 public class AdvertiseServiceTest {
 
 	private static final String QUERY = "AAAAAAAAAA";
-	
+
 	private AdvertiseService advertiseService;
 
 	@Mock
 	ElasticsearchTemplate elasticsearchTemplate;
-	
+
 	@Before
 	public void setUp() {
 		initMocks(this);
@@ -32,7 +32,7 @@ public class AdvertiseServiceTest {
 	@SuppressWarnings("unchecked")
 	public void testGetAdvertise() {
 
-		advertiseService.searchAdvertises(QUERY);		
+		advertiseService.searchAdvertises(QUERY);
 		verify(elasticsearchTemplate).queryForList(isA(SearchQuery.class), isA(Class.class));
 	}
 }
