@@ -33,26 +33,26 @@ A pretty neat ReactJS user interface is provided.
 - RestAssured
 - Spring Test
 
-### In memory infrastructure
+#### In memory infrastructure
 - Embedded MongoDB
 - Embedded ElasticSearch
 - QPID broker
 
 # Build the project
 
-### Build the frontend
+#### Build the frontend
 From folder microservices/advertise-ui:
 ```
 $ npm run build
 ```
 
-### Build the backend
+#### Build the backend
 From folder microservices:
 ```
 $ mvn clean package
 ```
 
-### Build Docker images
+#### Build Docker images
 From folder microservices:
 ```
 export SPRING_PROFILES_ACTIVE=*a spring profile (e.g testing, prod)*
@@ -66,13 +66,13 @@ $ docker-compose -f docker-compose.yml -f docker-compose.dev.yml build
 
 # How to run
 
-### Development mode 
+#### Development mode 
 ```
 run docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ```
 **docker-compose.dev.yml** inherits **docker-compose.yml** with additional possibility to build images locally and expose all containers ports for convenient development.
 
-### Production mode
+#### Production mode
 ```
 run docker-compose up
 ```
