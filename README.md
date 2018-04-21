@@ -1,17 +1,12 @@
 # Advertise Microservices
 
-This is a proof-of-concept application, which demonstrates Microservice Architecture Pattern using Spring Boot. 
+This is a proof-of-concept application, which demonstrates various type of test in an hypothetical Microservice Architecture.  
 
-The architecture don't comprise the classical infrastructure service needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and is not tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
-
-This choose come by the fact that the main purpose of the project is:
-
-- show a polyglot persistence and asynchronous service-to-service communication via Message broker
-- perform various type of test, in particular use an in memory infrastructure in the integration test
+As the project focus is provide a testing strategies the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and is not tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
 Every component of the architecture is containerized through Docker.
 
-A pretty neat ReactJS user interface is provided.
+Despite the premises, a pretty neat ReactJS user interface is provided.
 
 # Features
 #### Frontend
@@ -88,3 +83,4 @@ run docker-compose up
 As this project is a work in progress, further extension of the system could be:
 - Add a security system (e.g. Oauth2)
 - Decide the Cloud infrastructure where run the project
+- Integrate the build and testing step in a pipeline 
