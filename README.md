@@ -1,10 +1,10 @@
 # Advertise Microservices
 
-This is a proof-of-concept application, which demonstrates against an hypothetical Microservice Architecture: 
+This is a proof-of-concept application which demonstrates, against an hypothetical Microservice Architecture, the following: 
 - architecture component containerization through Docker
 - various type of test 
 
-As the project focus is to provide a testing strategies the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
+As the project focus is to provide a testing strategies, the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
 Despite the premises, a pretty neat ReactJS user interface is provided.
 
@@ -101,8 +101,5 @@ run docker-compose up
 - http://localhost:8082 - Advertise-search microservice
 - http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
 
-# Conclusion
-As this project is a work in progress, further extension of the system could be:
-- Add a security system (e.g. Oauth2)
-- Decide the Cloud infrastructure where run the project
-- Integrate the build and testing step in a pipeline 
+# Feedback welcome
+As this is a proof-of-concept mistake and miserunderstunding are possible. Every type of feedback is welcome to improve it.  
