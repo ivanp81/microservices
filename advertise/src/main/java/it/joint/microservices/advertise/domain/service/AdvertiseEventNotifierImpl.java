@@ -16,18 +16,18 @@ import it.joint.microservices.advertise.util.JSONUtil;
 @Service
 public class AdvertiseEventNotifierImpl implements AdvertiseEventNotifier {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	private RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplate;
 
-	@Autowired
-	public AdvertiseEventNotifierImpl(RabbitTemplate rabbitTemplate) {
-		this.rabbitTemplate = rabbitTemplate;
-	}
+    @Autowired
+    public AdvertiseEventNotifierImpl(RabbitTemplate rabbitTemplate) {
+	this.rabbitTemplate = rabbitTemplate;
+    }
 
-	public void broadcastEvent(AdvertiseEvent event, Object message) throws JsonProcessingException {
-		log.info("broadcastEvent " + event.getName().toUpperCase() + " with message " + message);
-		rabbitTemplate.convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(),
-				JSONUtil.serializeToJson(message));
-	}
+    public void broadcastEvent(AdvertiseEvent event, Object message) throws JsonProcessingException {
+	log.info("broadcastEvent " + event.getName().toUpperCase() + " with message " + message);
+	rabbitTemplate.convertAndSend(RabbitMQBroadcastConfig.advertiseTopicExchangeName, "#." + event.getName(),
+		JSONUtil.serializeToJson(message));
+    }
 }

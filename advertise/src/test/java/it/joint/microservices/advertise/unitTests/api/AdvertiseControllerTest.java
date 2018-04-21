@@ -14,62 +14,62 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class AdvertiseControllerTest {
 
-	private static final String DEFAULT_ID = "11111111";
-	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String DEFAULT_ID = "11111111";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-	private AdvertiseController advertiseController;
+    private AdvertiseController advertiseController;
 
-	@Mock
-	private AdvertiseRepository advertiseRepository;
+    @Mock
+    private AdvertiseRepository advertiseRepository;
 
-	@Before
-	public void setUp() {
+    @Before
+    public void setUp() {
 
-		initMocks(this);
-		advertiseController = new AdvertiseController(advertiseRepository);
-	}
+	initMocks(this);
+	advertiseController = new AdvertiseController(advertiseRepository);
+    }
 
-	@Test
-	public void testCreateAdvertise() {
+    @Test
+    public void testCreateAdvertise() {
 
-		Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
 
-		advertiseController.createAdvertise(advertise);
+	advertiseController.createAdvertise(advertise);
 
-		verify(advertiseRepository).save(advertise);
-	}
+	verify(advertiseRepository).save(advertise);
+    }
 
-	@Test
-	public void testUpdateAdvertise() {
+    @Test
+    public void testUpdateAdvertise() {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
 
-		advertiseController.updateAdvertise(advertise);
+	advertiseController.updateAdvertise(advertise);
 
-		verify(advertiseRepository).save(advertise);
-	}
+	verify(advertiseRepository).save(advertise);
+    }
 
-	@Test
-	public void testDeleteAdvertise() {
+    @Test
+    public void testDeleteAdvertise() {
 
-		advertiseController.deleteAdvertise(DEFAULT_ID);
-		verify(advertiseRepository).delete(DEFAULT_ID);
-	}
+	advertiseController.deleteAdvertise(DEFAULT_ID);
+	verify(advertiseRepository).delete(DEFAULT_ID);
+    }
 
-	@Test
-	public void testGetAdvertise() {
+    @Test
+    public void testGetAdvertise() {
 
-		advertiseController.getAdvertise(DEFAULT_ID);
-		verify(advertiseRepository).findOne(DEFAULT_ID);
-	}
-	
-	@Test
-	public void testGetAdvertises() {
+	advertiseController.getAdvertise(DEFAULT_ID);
+	verify(advertiseRepository).findOne(DEFAULT_ID);
+    }
 
-		advertiseController.getAdvertises();
-		verify(advertiseRepository).findAll();
-	}
+    @Test
+    public void testGetAdvertises() {
+
+	advertiseController.getAdvertises();
+	verify(advertiseRepository).findAll();
+    }
 
 }

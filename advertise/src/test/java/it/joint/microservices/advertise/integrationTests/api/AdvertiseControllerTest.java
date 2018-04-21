@@ -40,91 +40,91 @@ import java.util.List;
 @ActiveProfiles("test")
 public class AdvertiseControllerTest {
 
-	private static final String DEFAULT_ID = "11111111";
-	private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-	private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String DEFAULT_ID = "11111111";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
 
-	private static final String UPDATED_TITLE = "BBBBBBBBBBBB";
-	private static final String UPDATED_CONTENT = "BBBBBBBBBBBB";
+    private static final String UPDATED_TITLE = "BBBBBBBBBBBB";
+    private static final String UPDATED_CONTENT = "BBBBBBBBBBBB";
 
-	@Autowired
-	private MockMvc mvc;
+    @Autowired
+    private MockMvc mvc;
 
-	@MockBean
-	private AdvertiseRepository addressRepository;
+    @MockBean
+    private AdvertiseRepository addressRepository;
 
-	@Before
-	public void setUp() {
-		initMocks(this);
-	}
+    @Before
+    public void setUp() {
+	initMocks(this);
+    }
 
-	@Test
-	public void testCreateAdvertise() throws Exception {
+    @Test
+    public void testCreateAdvertise() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withTitle(DEFAULT_TITLE).withContent(DEFAULT_CONTENT).build();
 
-		doAnswer(new Answer<Advertise>() {
-			public Advertise answer(InvocationOnMock invocation) throws Throwable {
-				Advertise advertise = invocation.getArgumentAt(0, Advertise.class);
-				advertise.setId(DEFAULT_ID);
-				return advertise;
-			}
-		}).when(addressRepository).save(any(Advertise.class));
+	doAnswer(new Answer<Advertise>() {
+	    public Advertise answer(InvocationOnMock invocation) throws Throwable {
+		Advertise advertise = invocation.getArgumentAt(0, Advertise.class);
+		advertise.setId(DEFAULT_ID);
+		return advertise;
+	    }
+	}).when(addressRepository).save(any(Advertise.class));
 
-		mvc.perform(post("/api/advertises").content(JSONUtil.serializeToJson((advertise)))
-				.contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
-				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
-	}
+	mvc.perform(post("/api/advertises").content(JSONUtil.serializeToJson((advertise)))
+		.contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk())
+		.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
+		.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+    }
 
-	@Test
-	public void testUpdateAdvertise() throws Exception {
+    @Test
+    public void testUpdateAdvertise() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(UPDATED_TITLE)
-				.withContent(UPDATED_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(UPDATED_TITLE)
+		.withContent(UPDATED_CONTENT).build();
 
-		doReturn(advertise).when(addressRepository).save(advertise);
+	doReturn(advertise).when(addressRepository).save(advertise);
 
-		mvc.perform(put("/api/advertises").content(JSONUtil.serializeToJson((advertise)))
-				.contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(UPDATED_TITLE)))
-				.andExpect(jsonPath("$.content", is(UPDATED_CONTENT)));
-	}
+	mvc.perform(put("/api/advertises").content(JSONUtil.serializeToJson((advertise)))
+		.contentType("application/json;charset=UTF-8")).andDo(print()).andExpect(status().isOk())
+		.andExpect(jsonPath("$.id", is(DEFAULT_ID))).andExpect(jsonPath("$.title", is(UPDATED_TITLE)))
+		.andExpect(jsonPath("$.content", is(UPDATED_CONTENT)));
+    }
 
-	@Test
-	public void testDeleteAdvertise() throws Exception {
+    @Test
+    public void testDeleteAdvertise() throws Exception {
 
-		mvc.perform(delete("/api/advertises/" + DEFAULT_ID).contentType("application/json;charset=UTF-8"))
-				.andDo(print()).andExpect(status().isOk());
-	}
+	mvc.perform(delete("/api/advertises/" + DEFAULT_ID).contentType("application/json;charset=UTF-8"))
+		.andDo(print()).andExpect(status().isOk());
+    }
 
-	@Test
-	public void testGetAdvertise() throws Exception {
+    @Test
+    public void testGetAdvertise() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
 
-		doReturn(advertise).when(addressRepository).findOne(DEFAULT_ID);
+	doReturn(advertise).when(addressRepository).findOne(DEFAULT_ID);
 
-		mvc.perform(get("/api/advertises/" + DEFAULT_ID).contentType("application/json;charset=UTF-8")).andDo(print())
-				.andExpect(status().isOk()).andExpect(jsonPath("$.id", is(DEFAULT_ID)))
-				.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
-				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
-	}
+	mvc.perform(get("/api/advertises/" + DEFAULT_ID).contentType("application/json;charset=UTF-8")).andDo(print())
+		.andExpect(status().isOk()).andExpect(jsonPath("$.id", is(DEFAULT_ID)))
+		.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
+		.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+    }
 
-	@Test
-	public void testGetAdvertises() throws Exception {
+    @Test
+    public void testGetAdvertises() throws Exception {
 
-		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
-				.withContent(DEFAULT_CONTENT).build();
-		List<Advertise> advertises = Arrays.asList(new Advertise[]{advertise});
-		
-		doReturn(advertises).when(addressRepository).findAll();
+	Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+		.withContent(DEFAULT_CONTENT).build();
+	List<Advertise> advertises = Arrays.asList(new Advertise[] { advertise });
 
-		mvc.perform(get("/api/advertises").contentType("application/json;charset=UTF-8")).andDo(print())
-				.andExpect(status().isOk()).andExpect(jsonPath("$[0].id", is(DEFAULT_ID)))
-				.andExpect(jsonPath("$[0].title", is(DEFAULT_TITLE)))
-				.andExpect(jsonPath("$[0].content", is(DEFAULT_CONTENT)));
-	}
+	doReturn(advertises).when(addressRepository).findAll();
+
+	mvc.perform(get("/api/advertises").contentType("application/json;charset=UTF-8")).andDo(print())
+		.andExpect(status().isOk()).andExpect(jsonPath("$[0].id", is(DEFAULT_ID)))
+		.andExpect(jsonPath("$[0].title", is(DEFAULT_TITLE)))
+		.andExpect(jsonPath("$[0].content", is(DEFAULT_CONTENT)));
+    }
 
 }
