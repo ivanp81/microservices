@@ -2,7 +2,7 @@
 
 This is a proof-of-concept application which demonstrates, against an hypothetical Microservice Architecture, the following: 
 - architecture component containerization through Docker
-- various type of test 
+- various type of test coming from the test pyramid
 
 As the project focus is to provide a testing strategies, the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
@@ -27,6 +27,7 @@ Following are the assumption made for testing:
 - Unit tests are solitary (use Mocks) and perform behavior verification 
 - Integration\Component tests are sociable (use some real collaborators), and perform state verification
 - All the external system component should be runned as in memory process 
+- Some test duplication are possible as we want see the testing strategies from different point of view
 
 #### Framework
 - Junit
