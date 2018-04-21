@@ -4,7 +4,7 @@ This is a proof-of-concept application which demonstrates, against an hypothetic
 - architecture component containerization through Docker
 - various type of test coming from the test pyramid
 
-As the project focus is to provide containerization and testing strategies, the architecture don't comprise the classical infrastructure services needed by this type of architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
+As the project focus is to provide containerization and testing strategies, the architecture don't comprise the classical infrastructure services needed by a Microservice Architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
 Despite the premises, a pretty neat ReactJS user interface is provided.
 
