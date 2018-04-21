@@ -32,6 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @WebMvcTest(AdvertiseController.class)
 @ActiveProfiles("test")
@@ -107,6 +110,21 @@ public class AdvertiseControllerTest {
 				.andExpect(status().isOk()).andExpect(jsonPath("$.id", is(DEFAULT_ID)))
 				.andExpect(jsonPath("$.title", is(DEFAULT_TITLE)))
 				.andExpect(jsonPath("$.content", is(DEFAULT_CONTENT)));
+	}
+
+	@Test
+	public void testGetAdvertises() throws Exception {
+
+		Advertise advertise = new Advertise.Builder().withId(DEFAULT_ID).withTitle(DEFAULT_TITLE)
+				.withContent(DEFAULT_CONTENT).build();
+		List<Advertise> advertises = Arrays.asList(new Advertise[]{advertise});
+		
+		doReturn(advertises).when(addressRepository).findAll();
+
+		mvc.perform(get("/api/advertises").contentType("application/json;charset=UTF-8")).andDo(print())
+				.andExpect(status().isOk()).andExpect(jsonPath("$[0].id", is(DEFAULT_ID)))
+				.andExpect(jsonPath("$[0].title", is(DEFAULT_TITLE)))
+				.andExpect(jsonPath("$[0].content", is(DEFAULT_CONTENT)));
 	}
 
 }

@@ -64,4 +64,12 @@ public class AdvertiseControllerTest {
 		advertiseController.getAdvertise(DEFAULT_ID);
 		verify(advertiseRepository).findOne(DEFAULT_ID);
 	}
+	
+	@Test
+	public void testGetAdvertises() {
+
+		advertiseController.getAdvertises();
+		verify(advertiseRepository).findAll();
+	}
+
 }

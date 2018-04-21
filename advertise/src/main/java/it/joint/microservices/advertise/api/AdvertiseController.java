@@ -6,6 +6,8 @@ import it.joint.microservices.advertise.domain.repository.AdvertiseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -44,6 +46,13 @@ public class AdvertiseController {
 		advertiseRepository.delete(id);
 	}
 
+	@GetMapping("/advertises")
+	public List<Advertise> getAdvertises() {
+		log.info("REST request to getAdvertises");
+		List<Advertise> advertises = advertiseRepository.findAll();
+		return advertises;
+	}
+	
 	@GetMapping("/advertises/{id}")
 	public Advertise getAdvertise(@PathVariable String id) {
 		log.info("REST request to getAdvertise : {}", id);
