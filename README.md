@@ -77,4 +77,10 @@ run docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 run docker-compose up
 ```
 
+# Important endpoints
+- http://localhost:80 - UI
+- http://localhost:8080 - Gateway
+- http://localhost:8081 - Advertise microservice
+- http://localhost:8081 - Advertise-search microservice
+- http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
 
