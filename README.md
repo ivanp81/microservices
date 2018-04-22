@@ -11,10 +11,10 @@ Despite the premises, a pretty neat ReactJS user interface is provided.
 # Domain
 The following is the simple domain problem that the service try to solve:
 
-- A user can manage advertises. He can list, save, update, delete it. 
-- He can perform a full-text search inside the advertises's title and content. 
-- Every word researched must be present in the advertise.  
-- The search index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise.  
+- A user can manage advertises. He can list, save, update, delete it
+- A user can perform a full-text search inside the advertises's title and content
+- Every word researched must be present in the advertise
+- The search index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise
 
 # Features
 #### Frontend
