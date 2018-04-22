@@ -27,7 +27,10 @@ const Footer = () => {
             	<div className="tab-pane" id="backend">
                     <h3>Backend</h3>
                     <ul>
-	            		<li>Spring Boot</li>                    
+	            		<li>Spring Boot</li>  
+	            		<li>MongoDB</li>  
+	            		<li>ElasticSearch</li>
+	            		<li>RabbitMQ</li>  
 	                </ul>
                 </div>
 

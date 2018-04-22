@@ -10,7 +10,7 @@ const Home = () => {
             <Header/>
 
             <div className="container text-muted">
-                <Section/>
+                
                 <Footer/>
             </div>
             

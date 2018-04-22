@@ -18,7 +18,6 @@ export const HeaderNavContainer = ({apiCallsInProgress}) => {
                         <NavLink className="nav-item nav-link active" exact activeClassName="active" to="/">Home</NavLink>
                         <NavLink className="nav-item nav-link active" activeClassName="active" to="/advertises" >Advertise</NavLink>
                         <NavLink className="nav-item nav-link active" activeClassName="active" to="/search" >Search</NavLink>
-                        <NavLink className="nav-item nav-link active" activeClassName="active" to="/about">About</NavLink>
 
                         <span className="ml-5">
                             {apiCallsInProgress > 0 && <Spinner className="nav-item nav-link" interval={100} dots={20} />}
