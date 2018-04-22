@@ -2,11 +2,17 @@
 
 This is a proof-of-concept application which demonstrates, against an hypothetical Microservice Architecture, the following: 
 - architecture component containerization through Docker
-- various type of test coming from the test pyramid
+- testing strategies
 
 As the project focus is to provide containerization and testing strategies, the architecture don't comprise the classical infrastructure services needed by a Microservice Architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS) 
 
 Despite the premises, a pretty neat ReactJS user interface is provided.
+
+#Domain
+The following is the simple domain problem that the service try to solve:
+
+A user can manage advertises. He can list, save, update, delete it. He can perform a full-text search inside the advertises's title and content. Every word researched must be present in the advertise.  
+The search index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise.  
 
 # Features
 #### Frontend
