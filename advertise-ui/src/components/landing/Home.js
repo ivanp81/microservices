@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../template/Header';
-import Section from './Section';
 import Footer from './Footer';
 
 const Home = () => {
