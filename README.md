@@ -60,6 +60,7 @@ $ mvn verify -Pacceptance-tests -Dacceptance.advertise.url=URL_TO_ADVERTISE_TEST
 
 #### Build the frontend
 From folder microservices/advertise-ui:
+
 ```
 $ npm run build
 ```
@@ -99,6 +100,12 @@ run docker-compose up
 - http://localhost:8081 - Advertise microservice
 - http://localhost:8082 - Advertise-search microservice
 - http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
+
+# Reference
+The following are some reference articles from which I took inspiration:
+- https://martinfowler.com/articles/microservice-testing/
+- https://martinfowler.com/articles/practical-test-pyramid.html
+- https://martinfowler.com/articles/mocksArentStubs.html
 
 # Feedback welcome
 As this is a proof-of-concept mistake and miserunderstunding are possible. Every type of feedback is welcome to improve it.  
