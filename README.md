@@ -8,7 +8,7 @@ As the project focus is to provide containerization and testing strategies, the 
 
 Despite the premises, a pretty neat ReactJS user interface is provided.
 
-#Domain
+# Domain
 The following is the simple domain problem that the service try to solve:
 
 A user can manage advertises. He can list, save, update, delete it. He can perform a full-text search inside the advertises's title and content. Every word researched must be present in the advertise.  
