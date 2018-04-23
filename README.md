@@ -125,7 +125,7 @@ The same consideration are valid for Kubernetes.
 
 The pipeline and the microservice associated are entirely executed on Kubernetes. We can adapt the Kubernetes, service\deployment to the microservices showed in this project. 
 
-Also, at the beginning of the article we decided at this stage of the project to don't tye our architecture to a cloud solution.
+Also, the intention at this stage of the project is to don't tye the architecture to a cloud solution.
 
 Another reason is that, for more complex use case you need to bring up a pod for every component involved. This require a super powerfull laptop.    
 
