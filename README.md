@@ -8,7 +8,7 @@ This is a proof-of-concept application which demonstrates, against an hypothetic
 
 As the project focus is to provide some XP and DevOps practices, the architecture don't comprise the classical infrastructure services needed by a Microservice Architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS).
 
-Despite the premises, a pretty neat ReactJS user interface is provided.
+Despite the premises, as I was interested in learn some ReactJS basics a user interface is provided.
 
 # Domain
 The following is the simple domain problem that the service try to solve:
