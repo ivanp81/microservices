@@ -1,9 +1,6 @@
 # Set the base image to java8
 FROM openjdk:8-alpine
 
-# Add bash 
-RUN /bin/sh -c "apk add --no-cache bash"
-
 # Define default environment variables
 ENV ADVERTISE_SEARCH_HOME=/opt/advertise-search
 ENV ADVERTISE_SEARCH_BINARIES=/opt/advertise-search/bin
