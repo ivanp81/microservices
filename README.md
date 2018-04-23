@@ -113,14 +113,14 @@ run docker-compose up
 
 # What is missing
 
-#### Jenkins pipeline
+### Jenkins pipeline
 You can notice the absence of a pipeline. 
 
 I preferred to leave it outside of the topic of this project as every microservices I've developed in the various projects follow an identical DevOps pattern. This means that we can easily adapt the pipeline showed in the https://github.com/ivanp81/address-pipeline repository for the microservices in this project.  
 
 The second reason is that I wanted to keep this project in one repostitory so that a reader can see everything together. Actually the pipeline is meant to have a repository per service. 
 
-#### Kubernetes orchestration
+### Kubernetes orchestration
 The same consideration are valid for Kubernetes. 
 
 The pipeline and the microservice associated are entirely executed on Kubernetes. We can adapt the Kubernetes, service\deployment to the microservices showed in this project. 
