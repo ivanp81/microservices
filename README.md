@@ -1,12 +1,12 @@
-# Advertise Microservices
+# XP and DevOps in Microservices
 
-This is a proof-of-concept application which demonstrates, against an hypothetical Microservice Architecture, the following: 
-- architecture component containerizations through Docker
+This is a proof-of-concept which demonstrates, against an hypothetical Microservice Architecture, the following: 
+- architecture components containerization through Docker
 - testing strategies
 - CI with Jenkins
 - containers orchestration with Kubernetes
 
-As the project focus is to provide some XP and DevOps practices, the architecture don't comprise the classical infrastructure services needed by a Microservice Architecture (e.g. Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS).
+As the project focus is to provide some XP and DevOps practices, the architecture don't comprise the classical infrastructure services needed by a Microservice Architecture (e.g. Auth, Service Discovery, Service Config, etc...) and isn't tied to a specific cloud solution (e.g. Spring Cloud, Kubernetes, AWS).
 
 Despite the premises, as I was interested in learn some ReactJS basics a user interface is provided.
 
@@ -15,7 +15,7 @@ The following is the simple domain problem that the service try to solve:
 
 - A user can manage advertises. An advertise have title and content. Users can list, save, update, delete advertise
 - A user can perform a full-text search inside the advertises's title and content. Every word researched must be present in the advertise
-- The search index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise
+- The search-index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise
 
 # Features
 #### Frontend
