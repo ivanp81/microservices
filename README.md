@@ -123,7 +123,9 @@ The second reason is that I wanted to keep this project in one repostitory so th
 #### Kubernetes orchestration
 The same consideration are valid for Kubernetes. 
 
-The pipeline and the microservice associated are entirely executed on Kubernetes. We can adapt the Kubernetes, service\deployment to the microservices showed in this project. Also, at the beginning of the article we decided at this stage of the project to don't tye our architecture to a cloud solution.
+The pipeline and the microservice associated are entirely executed on Kubernetes. We can adapt the Kubernetes, service\deployment to the microservices showed in this project. 
+
+Also, at the beginning of the article we decided at this stage of the project to don't tye our architecture to a cloud solution.
 
 Another reason is that, for more complex use case you need to bring up a pod for every component involved. This require a super powerfull laptop.    
 
