@@ -112,11 +112,20 @@ run docker-compose up
 
 
 # What is missing
+
+#### Jenkins pipeline
 You can notice the absence of a pipeline. 
 
 I preferred to leave it outside of the topic of this project as every microservices I've developed in the various projects follow an identical DevOps pattern. This means that we can easily adapt the pipeline showed in the https://github.com/ivanp81/address-pipeline repository for the microservices in this project.  
 
 The second reason is that I wanted to keep this project in one repostitory so that a reader can see everything together. Actually the pipeline is meant to have a repository per service. 
+
+#### Kubernetes orchestration
+The same consideration are valid for Kubernetes. 
+
+The pipeline and the microservice associated are entirely executed on Kubernetes. We can adapt the Kubernetes, service\deployment to the microservices showed in this project. Also, at the beginning of the article we decided at this stage of the project to don't tye our architecture to a cloud solution.
+
+Another reason is that, for more complex use case you need to bring up a pod for every component involved. This require a super powerfull laptop.    
 
 # Evolution
 - Add a security/authentication service to the architecture
@@ -128,7 +137,8 @@ The following are some reference articles from which I took inspiration:
 - https://martinfowler.com/articles/practical-test-pyramid.html
 - https://martinfowler.com/articles/mocksArentStubs.html
 
- # Note
+# Note
+This is the most complete README. I need to collect my idea to write some about the pipeline.
 
 # Feedback welcome
 As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it.  
