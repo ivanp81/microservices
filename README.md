@@ -115,5 +115,12 @@ The following are some reference articles from which I took inspiration:
 - https://martinfowler.com/articles/practical-test-pyramid.html
 - https://martinfowler.com/articles/mocksArentStubs.html
 
+# What is missing
+- You can notice the absence of a pipeline. 
+
+The first reason is that I preferred to leave a pipeline outside of the topic of this project as every microservices I've developed in the various projects follow an identical DevOps pattern. This means that we can easily adapt the pipeline showed in the https://github.com/ivanp81/address-pipeline repository for the microservices in this project.  
+
+The second reason is 
+
 # Feedback welcome
 As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it.  
