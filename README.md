@@ -108,7 +108,7 @@ run docker-compose up
 - http://localhost:8080 - Gateway
 - http://localhost:8081 - Advertise microservice
 - http://localhost:8082 - Advertise-search microservice
-- http://localhost:15672 - RabbitMq management
+- http://localhost:15672 - RabbitMQ management
 
 
 # What is missing
