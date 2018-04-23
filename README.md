@@ -109,20 +109,25 @@ run docker-compose up
 - http://localhost:8082 - Advertise-search microservice
 - http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
 
-# Reference
-The following are some reference articles from which I took inspiration:
-- https://martinfowler.com/articles/microservice-testing/
-- https://martinfowler.com/articles/practical-test-pyramid.html
-- https://martinfowler.com/articles/mocksArentStubs.html
 
 # What is missing
 You can notice the absence of a pipeline. 
 
 I preferred to leave it outside of the topic of this project as every microservices I've developed in the various projects follow an identical DevOps pattern. This means that we can easily adapt the pipeline showed in the https://github.com/ivanp81/address-pipeline repository for the microservices in this project.  
 
-The second reason is that I wanted to keep this project in one repostitory so that a reader can see everything together. Actually the pipeline is meant to have a repository per service 
+The second reason is that I wanted to keep this project in one repostitory so that a reader can see everything together. Actually the pipeline is meant to have a repository per service. 
 
-# Possible evolution
+# Evolution
+- Add a security/authentication service to the architecture
+- Try to run a microservices in AWS (EC2\ECS)
+
+# Reference
+The following are some reference articles from which I took inspiration:
+- https://martinfowler.com/articles/microservice-testing/
+- https://martinfowler.com/articles/practical-test-pyramid.html
+- https://martinfowler.com/articles/mocksArentStubs.html
+
+ # Note
 
 # Feedback welcome
 As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it.  
