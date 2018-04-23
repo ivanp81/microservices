@@ -11,9 +11,8 @@ Despite the premises, a pretty neat ReactJS user interface is provided.
 # Domain
 The following is the simple domain problem that the service try to solve:
 
-- A user can manage advertises. He can list, save, update, delete it
-- A user can perform a full-text search inside the advertises's title and content
-- Every word researched must be present in the advertise
+- A user can manage advertises. An advertise have title and content. Users can list, save, update, delete advertise
+- A user can perform a full-text search inside the advertises's title and content. Every word researched must be present in the advertise
 - The search index is automatically synchronized every time that an event (save\update, delete) occurs on an advertise
 
 # Features
@@ -34,7 +33,7 @@ Following are the assumption made for testing:
 
 - Unit tests are solitary (use Mocks) and perform behavior verification 
 - Integration\Component tests are sociable (use some real collaborators), and perform state verification
-- All the external system component should be run as in memory process 
+- As we want fast test and fast feedback, the external system component are executed with in memory process 
 - Some test duplication are possible as we want see the testing strategies from different point of view
 
 #### Framework
