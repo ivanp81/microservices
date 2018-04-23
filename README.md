@@ -116,4 +116,4 @@ The following are some reference articles from which I took inspiration:
 - https://martinfowler.com/articles/mocksArentStubs.html
 
 # Feedback welcome
-As this is a proof-of-concept mistake and miserunderstunding are possible. Every type of feedback is welcome to improve it.  
+As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it.  
