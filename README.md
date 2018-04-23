@@ -34,7 +34,7 @@ Following are the assumption made for testing:
 
 - Unit tests are solitary (use Mocks) and perform behavior verification 
 - Integration\Component tests are sociable (use some real collaborators), and perform state verification
-- All the external system component should be runned as in memory process 
+- All the external system component should be run as in memory process 
 - Some test duplication are possible as we want see the testing strategies from different point of view
 
 #### Framework
