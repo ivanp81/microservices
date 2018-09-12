@@ -26,6 +26,7 @@ The following is the simple domain problem that the service try to solve:
 
 #### Backend
 - Spring Boot
+- Lombock (for boilerplate code. See [here][lombock_install] for setup instruction)
 - MongoDB
 - ElasticSearch
 - RabbitMQ         
@@ -143,4 +144,6 @@ The following are some reference articles from which I took inspiration:
 This is the most complete README. I need to collect my idea to write some about the pipeline.
 
 # Feedback welcome
-As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it.  
+As this is a proof-of-concept mistake and misunderstanding are possible. Every type of feedback is welcome to improve it. 
+
+[lombock_install]: <https://projectlombok.org/setup/overview>
